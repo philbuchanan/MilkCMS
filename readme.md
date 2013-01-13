@@ -1,3 +1,3 @@
 # MilkCMS
 
-Milk is a simple file based CSM for writing.
+A lightweight file based CMS for writing.
