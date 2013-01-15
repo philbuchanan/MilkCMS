@@ -1,0 +1,16 @@
+DirectoryIndex index.php index.html index.htm
+
+# Rewrite rules
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite base
+RewriteBase /milkcmsdev/
+
+# Redirect everything to index.php
+RewriteRule ^(.*) index.php [L]
+ 
+</IfModule>
