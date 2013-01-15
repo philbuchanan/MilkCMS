@@ -1,9 +1,7 @@
-Title: Welcome
+Title: Welcome to MilkCMS
 ----
 Date: 2013/01/13
 ----
 Text:
-
-# Welcome to MilkCMS
 
 A lightweight filebased CMS for writing.

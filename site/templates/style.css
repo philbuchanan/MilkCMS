@@ -1,0 +1,301 @@
+/* == Reset =============================== */
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+blockquote, q {
+  quotes: none;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #444444;
+  margin: 1em 0;
+  padding: 0;
+}
+input, select {
+  vertical-align: middle;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+/* == Markdown Styles ===================== */
+body {
+  margin: 0 auto;
+  font-family: Georgia, Palatino, serif;
+  color: #444444;
+  line-height: 1;
+  max-width: 540px;
+  padding: 30px 30px 90px;
+}
+h1,
+h2,
+h3,
+h4 {
+  color: #111111;
+  font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin-bottom: 24px;
+  padding: 0;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 36px;
+  margin: 24px 0 48px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 21px;
+}
+h5 {
+  font-size: 18px;
+}
+a {
+  color: #990000;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+ul, ol {
+  padding: 0;
+  margin: 0 0 24px 18px;
+}
+ul li, ol li {
+  line-height: 24px;
+}
+p, ul, ol {
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 540px;
+}
+pre {
+  padding: 0px 24px;
+  max-width: 800px;
+  white-space: pre-wrap;
+  margin-bottom: 24px;
+}
+code {
+  font-family: Consolas, Monaco, Andale Mono, monospace;
+  line-height: 1.5;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+aside {
+  display: block;
+  float: right;
+  width: 390px;
+}
+blockquote {
+  color: #888;
+  font-style: italic;
+  margin: 1em 2em;
+  max-width: 476px;
+}
+blockquote p {
+  max-width: 460px;
+}
+hr {
+  width: 540px;
+  text-align: left;
+  margin: 0 auto 0 0;
+  color: #999999;
+}
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+/* == Grid ================================ */
+.container {
+  width: 540px;
+  margin: 0 auto;
+}
+.container section {
+  margin-top: 62px;
+  overflow: visible;
+}
+.container section h2 a, .container section h3 a {
+  color: black;
+}
+.container section h2 a:hover, .container section h3 a:hover {
+  color: #990000;
+}
+.container section article {
+  float: right;
+  width: 540px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px dashed #ccc;
+  padding: 10px 0;
+  -webkit-transition: background 0.3s ease-out;
+  -moz-transition: background 0.3s ease-out;
+  -o-transition: background 0.3s ease-out;
+  transition: background 0.3s ease-out;
+}
+footer:hover {
+  background: #ffffff;
+}
+footer .backbtn {
+  float: left;
+  font-size: 16px;
+}
+footer ul {
+  margin: 0;
+  list-style: none;
+  float: left;
+}
+footer ul.contact {
+  float: right;
+}
+footer ul.contact li {
+  float: left;
+  margin-left: 30px;
+}
+nav {
+  margin: 48px 0 65px;
+}
+nav .prev {
+  float: left;
+}
+nav .next {
+  float: right;
+}
+nav a {
+  -webkit-transition: color 0.3s ease-out;
+  -moz-transition: color 0.3s ease-out;
+  -o-transition: color 0.3s ease-out;
+  transition: color 0.3s ease-out;
+}
+nav a:hover {
+  color: #900;
+}
+/* == iOS Styles =========================== */
+/* iPhone 4 Styles */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  
+}
+@media only screen and (max-width: 320px) {
+  .container {
+    width: 300px;
+  }
+}
+/* iPad Styles */
+@media only screen and (max-width: 768px) {
+  article {
+    width: 500px !important;
+    padding-right: 40px !important;
+  }
+  nav {
+    padding-right: 40px !important;
+  }
+}
