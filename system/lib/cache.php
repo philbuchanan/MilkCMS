@@ -6,21 +6,33 @@ class cache {
 	
 	public static function checkCache($filename) {
 	
-		$cachefile = c::get('root.cache') . "/$filename.html";
+		# Make cache folder if it doesn't already exist
+		if (!is_dir(c::get('root.cache'))) {
 		
-		# Does cached file exist?
-		if (file_exists($cachefile)) {
-		
-			# Has cached file expired?
-			$cachetime = c::get('cacheexpire') * 3600;
-			if (time() - $cachetime < filemtime($cachefile)) include($cachefile);
-			else self::cacheFile($filename);
+			if (!mkdir(c::get('root.cache'), 0755)) die('Unable to create cache folder.');
 			
-			die();
+			self::cacheFile($filename);
 			
 		}
-		else self::cacheFile($filename);
+		else {
+		
+			$cachefile = c::get('root.cache') . "/$filename.html";
 			
+			# Does cached file exist?
+			if (file_exists($cachefile)) {
+				
+				# Has cached file expired?
+				$cachetime = c::get('cacheexpire') * 3600;
+				if (time() - $cachetime < filemtime($cachefile)) include($cachefile);
+				else self::cacheFile($filename);
+				
+				die();
+			
+			}
+			else self::cacheFile($filename);
+			
+		}
+		
 	}
 	
 	private static function cacheFile($filename) {
