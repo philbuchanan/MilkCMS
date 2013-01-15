@@ -21,4 +21,8 @@ c::set('title', 'Site Title');
 # The number of articles to show on each index page.
 c::set('articlesperpage', 10);
 
+# Cache Expire Settings
+# How long a cached file should be valid for.
+c::set('cacheexpire', 0); # Hours
+
 ?>
