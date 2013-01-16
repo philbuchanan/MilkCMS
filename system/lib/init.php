@@ -49,7 +49,7 @@ class app {
 				else {
 				
 					header('HTTP/1.0 404 Not Found');
-					//require_once(c::get('root.templates') . '/error.php');
+					require_once(c::get('root.templates') . '/error.php');
 				
 				}
 				
