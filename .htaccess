@@ -12,5 +12,5 @@ RewriteBase /milkcmsdev/
 
 # Redirect everything to index.php
 RewriteRule ^(.*) index.php [L]
- 
+
 </IfModule>

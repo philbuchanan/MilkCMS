@@ -15,10 +15,12 @@ c::set('root.content',   $root . '/content');
 c::set('root.cache',     $root . '/cache');
 c::set('root.templates', $root . '/site/templates');
 c::set('domain', 'http://' . $_SERVER['HTTP_HOST']);
+c::set('server_name', $_SERVER['SERVER_NAME']);
 c::set('rewritebase', '/');
 
 # Load site config
 c::load(c::get('root.site') . '/config/config.php');
+c::load(c::get('root.site') . '/config/config.' . c::get('server_name') . '.php');
 
 # Set home url
 c::set('home', c::get('domain') . c::get('rewritebase'));
