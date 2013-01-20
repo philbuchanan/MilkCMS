@@ -4,4 +4,4 @@ Date: 2013/01/13
 ----
 Text:
 
-A lightweight filebased CMS for writing.
+A lightweight file based CMS for writing.

@@ -44,6 +44,14 @@ class files {
 		return $contents_arr;
 	
 	}
+	
+	public static function set($filename, $contents) {
+		
+		$fp = fopen($filename, 'w');
+		fwrite($fp, $contents);
+		fclose($fp);
+		
+	}
 
 }
 

@@ -32,6 +32,8 @@ class app {
 					# Is caching turned on?
 					if (c::get('cacheexpire')) {
 						
+						if (!is_dir(c::get('root.cache'))) cache::createCacheDir();
+						
 						# Check the cache status and get existing or create new cached file
 						cache::checkCache($url);
 						
