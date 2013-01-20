@@ -12,15 +12,15 @@ Installing Milk CMS couldn't be easier.
 
 ## Advanced Options
 
-**Install in a sub directory**
+### Install in a sub directory
 
 To install Milk CMS in a sub directory you will need to set the rewrite base to this new director. This needs to be done in two places: the .htaccess file and in the site/config/config.php file.
 
-**Turn caching on**
+### Turn caching on
 
 To turn caching on simple set the desired amount of time a cached file should be valid for (in hours) in the site/config/config.php file. Milk CMS will create a cache folder for you the next time an article is accessed on your site.
 
-**Set number of articles to display per page**
+### Set number of articles to display per page
 
 You can set the number of articles you want to display on a page in the site/config/config.php file.
 
