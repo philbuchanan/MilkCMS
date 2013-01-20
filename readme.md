@@ -1,6 +1,24 @@
-# MilkCMS
+# Milk CMS
 
 A lightweight file based CMS for writing.
+
+Milk CMS is a simple CMS for building single level websites (article listing page and single article page).
+
+Features:
+
+- No database required
+- No menus, widgets or plugins
+- Simple previous and next pagination
+- Markdown integration for simple writing
+- Caching of article pages
+
+## Requirements
+
+The current the requirements of Milk CMS are:
+
+- PHP v5.2+
+- Apache server
+- mod_rewrite module enabled
 
 ## Installation
 
