@@ -31,7 +31,7 @@ class files {
 		
 		# Generate URL
 		$filename = explode('.', $file, 2);
-		$contents_arr['link'] = c::get('home') . $filename[0];
+		$contents_arr['permalink'] = c::get('home') . $filename[0];
 		
 		# Create article array
 		foreach ($contents as $items) {

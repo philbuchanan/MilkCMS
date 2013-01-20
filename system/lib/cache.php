@@ -29,7 +29,9 @@ class cache {
 				die();
 			
 			}
-			else self::cacheFile($filename);
+			else {
+				self::cacheFile($filename);
+			}
 			
 		}
 		

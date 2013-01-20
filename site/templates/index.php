@@ -7,7 +7,7 @@ include('includes/header.php');
 		?>
 		
 		<section>
-			<h3><a href="<?php echo $article['link'] ?>"><?php echo SmartyPants($article['title']); ?></a></h3>
+			<h3><a href="<?php echo $article['permalink'] ?>"><?php echo SmartyPants($article['title']); ?></a></h3>
 			<article>
 				<?php echo SmartyPants(Markdown($article['text'])); ?>
 			</article>
