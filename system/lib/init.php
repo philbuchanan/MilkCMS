@@ -50,9 +50,8 @@ class app {
 				}
 				else {
 				
-					header('HTTP/1.0 404 Not Found');
-					$error_code = 404;
-					require_once(c::get('root.templates') . '/error.php');
+					if (isset($_GET['e'])) header::error($_GET['e']);
+					else header::error(404);
 				
 				}
 				

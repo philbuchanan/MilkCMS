@@ -23,7 +23,7 @@ class c {
 		}
 	}
 	
-	# Loads an additional config file 
+	# Loads an additional config file
 	static function load($file) {
 		if (file_exists($file)) require_once($file);
 		return c::get();
@@ -66,6 +66,25 @@ class a {
     # Search for elements in an array by regular expression
     static function search($array, $search) {
 		return preg_grep('#' . preg_quote($search) . '#i', $array);
+	}
+	
+}
+
+class header {
+	
+	public static function error($code) {
+	
+		switch($code) {
+			case 301:
+				header('HTTP/1.0 301 Moved Permanently');
+				break;
+			case 404:
+				header('HTTP/1.0 404 Not Found');
+				break;
+		}
+		
+		require_once(c::get('root.templates') . '/error.php');
+		
 	}
 	
 }

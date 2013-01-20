@@ -1,16 +1,20 @@
-DirectoryIndex index.php index.html index.htm
-
-# Rewrite rules
 <IfModule mod_rewrite.c>
 
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 
 # Rewrite base
 RewriteBase /milkcmsdev/
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
 # Redirect everything to index.php
 RewriteRule ^(.*) index.php [L]
+
+# Block content and files from being accessed directly
+RewriteRule ^content/(.*) ?e=301 [R=301,L]
+RewriteRule ^site/config/(.*) ?e=301 [R=301,L]
+RewriteRule ^site/parsers/(.*) ?e=301 [R=301,L]
+RewriteRule ^system/(.*) ?e=301 [R=301,L]
 
 </IfModule>
