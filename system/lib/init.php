@@ -25,6 +25,17 @@ class app {
 				self::loadIndex($page);
 				
 			}
+			elseif (strstr($url, 'search=')) {
+				
+				$search = true;
+				
+				$search = str_replace('search=', '', $url);
+				$search_string = str_replace('+', ' ', $search);
+				$articles = search::get_results($search_string);
+				
+				require_once(c::get('root.templates') . '/search.php');
+				
+			}
 			else {
 			
 				if (file_exists(c::get('root.content') . '/' . $url . '.txt')) {

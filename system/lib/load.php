@@ -14,6 +14,7 @@ class load {
 		require_once($root . '/lib/pagination.php');
 		require_once($root . '/lib/cache.php');
 		require_once($root . '/lib/parsers.php');
+		require_once($root . '/lib/search.php');
 		
 	}
 	
