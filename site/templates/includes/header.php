@@ -8,3 +8,4 @@
 </head>
 <body>
 <div class="container">
+	<h1><a href="<?php echo c::get('home'); ?>"><?php echo c::get('title'); ?></a></h1>

@@ -1,19 +1,11 @@
-// == Less Variables ======================
-
 // Less Variables
-	@text-color:			#444;
-	@link-color: 			#900;
-	@lightgrey:				#999;
+@text-color:   #444;
+@link-color:   #900;
+@light-grey:   #999;
 
-// Less Mixins
-.transition (@transition: color, @duration: .3s) {
-	-webkit-transition: @transition @duration ease-out;
-	   -moz-transition: @transition @duration ease-out;
-		 -o-transition: @transition @duration ease-out;
-			transition: @transition @duration ease-out;
-}
 
-/* == Reset =============================== */
+/* RESET
+   ---------------------------------- */
  
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -38,7 +30,8 @@ button, input, select, textarea {margin: 0;}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
 
 
-/* == Markdown Styles ===================== */
+/* TYPOGRAPHY
+   ---------------------------------- */
 
 body {
 	margin: 0 auto;
@@ -56,7 +49,18 @@ h1, h2, h3, h4, h5, p {
 	margin-bottom: 24px;
 	padding: 0;
 }
-h1 {font-size: 48px;}
+h1 {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	a {
+		color: @text-color;
+		&:hover {
+			color: @link-color;
+			text-decoration: none;
+		}
+	}
+}
 h2 {
 	font-size: 36px;
 	margin: 24px 0 48px;
@@ -65,19 +69,20 @@ h3 {font-size: 24px;}
 h4 {font-size: 21px;}
 h5 {font-size: 18px;}
 a {
-	color: @link-color;
+	color: @text-color;
 	margin: 0;
 	padding: 0;
 	vertical-align: baseline;
 	text-decoration: none;
-	&:hover {text-decoration: underline;}
+	&:hover {
+		color: @link-color;
+		text-decoration: underline;
+	}
 }
 ul, ol {
 	padding: 0;
 	margin: 0 0 24px 18px;
-	li {
-		line-height: 24px;
-	}
+	li {line-height: 24px;}
 }
 p, ul, ol {
 	font-size: 16px;
@@ -112,12 +117,14 @@ hr {
 	width: 540px;
 	text-align: left;
 	margin: 0 auto 0 0;
-	color: @lightgrey;
+	color: @light-grey;
 }
 em {font-style: italic;}
 strong {font-weight: bold;}
 
-/* == Grid ================================ */
+
+/* GRID
+   ---------------------------------- */
 
 .container {
 	width: 540px;
@@ -125,43 +132,9 @@ strong {font-weight: bold;}
 	section {
 		margin-top: 62px;
 		overflow: visible;
-		h2, h3 {
-			a {
-				color: black;
-				&:hover {color: @link-color;}
-			}
-		}
 		article {
 			float: right;
 			width: 540px;
-		}
-	}
-}
-footer {
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	width: 100%;
-	background: rgba(255, 255, 255, 0.9);
-	border-top: 1px dashed #ccc;
-	padding: 10px 0;
-	.transition(background);
-	&:hover {background: rgba(255, 255, 255, 1);}
-	.backbtn {
-		float: left;
-		font-size: 16px;
-	}
-	ul {
-		margin: 0;
-		list-style: none;
-		float: left;
-		&.contact {
-			float: right;
-			li {
-				float: left;
-				margin-left: 30px;
-			}
 		}
 	}
 }
@@ -169,22 +142,43 @@ nav {
 	margin: 48px 0 65px;
 	.prev {float: left;}
 	.next {float: right;}
-	a {.transition;}
 	a:hover {color: #900;}
 }
 
-/* == iOS Styles =========================== */
 
-/* iPhone 4 Styles */
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {}
-@media only screen and (max-width: 320px) {
-	.container {width: 300px;}
-}
-/* iPad Styles */
-@media only screen and (max-width: 768px) {
-	article {
-		width: 500px !important;
-		padding-right: 40px !important;
+/* SEARCH FORM
+   ---------------------------------- */
+
+h2.search-title {margin-bottom: 15px;}
+form {
+	margin-bottom: 50px;
+	overflow: auto;
+	label {
+		display: block;
+		font-family: Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		margin-bottom: 8px;
 	}
-	nav {padding-right: 40px !important;}
+	input {
+		float: left;
+		display: block;
+		font-family: Helvetica, Arial, sans-serif;
+		font-size: 16px;
+		width: 300px;
+		padding: 5px 5px 4px;
+		border: 1px solid @light-grey;
+		border-right: none;
+		&[type=submit] {
+			color: #fff;
+			background: @light-grey;
+			font-size: 13px;
+			padding: 6px 10px;
+			width: inherit;
+			cursor: pointer;
+			&:hover {
+				background: @link-color;
+				border-color: @link-color;
+			}
+		}
+	}
 }

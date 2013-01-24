@@ -25,11 +25,11 @@ class app {
 				self::loadIndex($page);
 				
 			}
-			elseif (strstr($url, 'search=')) {
+			elseif (strstr($url, '?search=')) {
 				
 				$search = true;
 				
-				$search = str_replace('search=', '', $url);
+				$search = str_replace('?search=', '', $url);
 				$search_string = str_replace('+', ' ', $search);
 				$articles = search::get_results($search_string);
 				
