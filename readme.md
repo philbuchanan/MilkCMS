@@ -109,6 +109,8 @@ Echo current version number of Milk CMS:
 
     <?php echo c::get('version'); ?>
 
+### All Settings
+
 Print all site settings:
 
     <?php
