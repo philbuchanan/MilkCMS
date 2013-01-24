@@ -105,6 +105,14 @@ Or linking to the homepage:
 
 ### Version Number
 
-    c::get('version')
+Echo current version number of Milk CMS:
 
-Returns current version number of Milk CMS
+    <?php echo c::get('version'); ?>
+
+Print all site settings:
+
+    <?php
+    echo '<pre>';
+    print_r(c::get());
+    echo '</pre>';
+    ?>
