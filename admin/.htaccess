@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+# Rewrite base
+RewriteBase /bugtracker/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect everything to index.php
+RewriteRule ^(.*) index.php [L]
+
+# Block content and files from being accessed directly
+RewriteRule ^system/(.*) ?e=301 [R=301,L]
+
+</IfModule>
