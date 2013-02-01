@@ -1,5 +1,5 @@
 <?php if (!defined('ACCESS')) exit; ?>
 
-user: admin
-pass: hasedpassword
+username: admin
+password: hashedpassword
 salt: ###

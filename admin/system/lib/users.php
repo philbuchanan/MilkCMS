@@ -10,12 +10,13 @@ class users {
 		$user = self::load($username);
 		
 		if (!$user) return false;
+		if (!array_key_exists('username', $user) || !array_key_exists('password', $user)) return false;
 		
 		# Check username and password
 		$hash = hash('sha256', $user['salt'] . hash('sha256', $password));
 		
-		if ($hash != $user['pass']) return false;
-		else return $user['user'];
+		if ($hash != $user['password']) return false;
+		else return $user['username'];
 		
 	}
 	
