@@ -40,25 +40,6 @@ class users {
 		return $account;
 	
 	}
-	
-	private static function hashPassword($password) {
-	
-		# Create password hash
-		$hash = hash('sha256', $password);
-		
-		# Create salt
-		function createSalt() {
-			$string = md5(uniqid(rand(), true));
-			return substr($string, 0, 3);
-		}
-		$salt = createSalt();
-		$hash = hash('sha256', $salt . $hash);
-		
-		$passdetails = array($hash, $salt);
-		
-		return $passdetails;
-	
-	}
 
 }
 
