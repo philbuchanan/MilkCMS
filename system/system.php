@@ -26,7 +26,7 @@ c::load(c::get('root.site') . '/config/config.' . c::get('server_name') . '.php'
 c::set('home', c::get('domain') . c::get('rewritebase'));
 
 # System checks
-if (floatval(phpversion()) < 5.2)    die('Please upgrade to PHP 5.2 or higher');
+if (floatval(phpversion()) < 5.3)    die('Please upgrade to PHP 5.3 or higher');
 if (!is_dir(c::get('root.content'))) die('The content directory could not be found');
 if (!is_dir(c::get('root.site')))    die('The site directory could not be found');
 
