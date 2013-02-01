@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo c::get('title'); ?></title>
 	
-	<link rel="stylesheet" href="<?php echo c::get('home'); ?>site/templates/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php echo c::get('home'); ?>assets/styles/style.css" type="text/css" media="screen" />
 </head>
 <body>
 <div class="container">

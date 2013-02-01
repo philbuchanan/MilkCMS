@@ -1,0 +1,192 @@
+// Less Variables
+
+@deepblue:		#353b48;
+@lightblue:		#0092d5;
+@grey:			#acb1b8;
+
+
+/* RESET
+   ---------------------------------- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+blockquote, q {quotes: none;}
+hr {display: block; height: 0; border: 0; border-top: 1px solid #ddd; margin: 0; padding: 0;}
+input, select {vertical-align: middle;}
+button, input, select, textarea {margin: 0;}
+
+
+/* FONT TREATMENTS
+   ---------------------------------- */
+ 
+html, body {font: 14px/20px Helvetica, Arial, sans-serif; color: #000;}
+h1 {
+	color: @deepblue;
+	font-size: 22px;
+	line-height: 26px;
+	font-weight: bold;
+	margin: 0 0 8px;
+}
+h2 {
+	color: @deepblue;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: bold;
+	margin: 18px 0 8px;
+	span {
+		color: @lightblue;
+		font-size: 14px;
+		font-weight: normal;
+	}
+}
+p {
+	&.error {
+		color: #f00;
+		margin: 10px 0 0 20px;
+	}
+}
+strong {font-weight: bold;}
+em {font-style: italic;}
+
+
+/* BASIC STRUCTURE
+   ---------------------------------- */
+
+.container {
+	width: 450px;
+	margin: 0 auto;
+}
+.login-container {width: 275px;}
+
+
+/* FORMS
+   ---------------------------------- */
+
+.login-box {
+	position: absolute;
+	top: 50%;
+	height: 250px;
+	margin-top: -165px;
+	h2 {
+		font-size: 20px;
+		font-weight: bold;
+		margin: 0 0 10px 20px;
+	}
+}
+form {
+	&.login {
+		clear: both;
+		color: #fff;
+		background: @deepblue;
+		width: 275px;
+		padding: 20px;
+		overflow: auto;
+		-webkit-border-radius: 10px;
+		   -moz-border-radius: 10px;
+		        border-radius: 10px;
+	}
+	label {
+		display: block;
+		font-size: 14px;
+		margin-bottom: 4px;
+		&.remember {
+			float: right;
+			margin-top: 6px;
+		}
+	}
+	input {
+		display: block;
+		font-family: Helvetica, Arial, sans-serif;
+		font-size: 16px;
+		font-weight: normal;
+		width: 261px;
+		margin-bottom: 14px;
+		padding: 8px 6px;
+		border: none;
+		-webkit-border-radius: 3px;
+		   -moz-border-radius: 3px;
+		        border-radius: 3px;
+		&:focus {outline-color: @lightblue;}
+		&[type=submit] {
+			float: left;
+			color: #fff;
+			background: @lightblue;
+			font-size: 13px;
+			font-weight: bold;
+			width: auto;
+			margin: 0 20px 0 0;
+			padding: 8px 12px;
+			border: none;
+			&:hover {
+				background: #2688b5;
+				cursor: pointer;
+			}
+		}
+		&[type=checkbox] {
+			float: left;
+			width: auto;
+			margin: 2px 4px 0 0;
+		}
+	}
+	#password {margin-bottom: 20px;}
+}
+
+
+/* NAVIGATION & LINKS
+   ---------------------------------- */
+
+/* Links */
+a {
+	color: @lightblue;
+	outline: none;
+	text-decoration: none;
+	&:hover {
+		color: darken(@lightblue, 15%);
+		text-decoration: underline;
+	}
+}
+
+
+/* ANIMATIONS
+   ---------------------------------- */
+
+@-webkit-keyframes loginerrorshake {
+	0%   {-webkit-transform: translate(6px, 0);}
+	25%  {-webkit-transform: translate(-6px, 0);}
+	50%  {-webkit-transform: translate(6px, 0);}
+	75%  {-webkit-transform: translate(-6px, 0);}
+	100% {-webkit-transform: translate(0, 0);}
+}
+@-moz-keyframes loginerrorshake {
+	0%   {-moz-transform: translate(6px, 0);}
+	25%  {-moz-transform: translate(-6px, 0);}
+	50%  {-moz-transform: translate(6px, 0);}
+	75%  {-moz-transform: translate(-6px, 0);}
+	100% {-moz-transform: translate(0, 0);}
+}
+@-ms-keyframes loginerrorshake {
+	0%   {-ms-transform: translate(6px, 0);}
+	25%  {-ms-transform: translate(-6px, 0);}
+	50%  {-ms-transform: translate(6px, 0);}
+	75%  {-ms-transform: translate(-6px, 0);}
+	100% {-ms-transform: translate(0, 0);}
+}
+.login-error {
+	-webkit-animation: loginerrorshake 0.3s;
+	   -moz-animation: loginerrorshake 0.3s;
+	    -ms-animation: loginerrorshake 0.3s;
+}

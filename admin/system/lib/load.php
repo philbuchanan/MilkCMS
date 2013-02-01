@@ -9,6 +9,10 @@ class load {
 		$root = c::get('root.system');
 		
 		require_once($root . '/lib/init.php');
+		require_once($root . '/lib/session.php');
+		require_once($root . '/lib/users.php');
+		require_once($root . '/lib/cookie.php');
+		require_once($root . '/lib/yaml.php');
 		
 	}
 	

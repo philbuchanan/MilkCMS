@@ -13,8 +13,11 @@ RewriteRule ^(.*) index.php [L]
 
 # Block content and files from being accessed directly
 RewriteRule ^content/(.*) ?e=301 [R=301,L]
-RewriteRule ^site/config/(.*) ?e=301 [R=301,L]
-RewriteRule ^site/parsers/(.*) ?e=301 [R=301,L]
+RewriteRule ^site/(.*) ?e=301 [R=301,L]
 RewriteRule ^system/(.*) ?e=301 [R=301,L]
+
+# Block admin panel from being accessed directly
+RewriteRule ^admin/site/(.*) error [R=301,L]
+RewriteRule ^admin/system/(.*) error [R=301,L]
 
 </IfModule>

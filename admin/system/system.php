@@ -13,7 +13,7 @@ c::set('root.system', $root . '/system');
 c::set('root.site',   $root . '/site');
 c::set('server_name', $_SERVER['SERVER_NAME']);
 c::set('domain',      'http://' . $_SERVER['HTTP_HOST']);
-c::set('rewritebase', '/');
+c::set('rewritebase', '/admin/');
 
 # Load site config
 c::load(c::get('root.site') . '/config/config.php');
@@ -23,8 +23,8 @@ c::load(c::get('root.site') . '/config/config.' . c::get('server_name') . '.php'
 c::set('home', c::get('domain') . c::get('rewritebase'));
 
 # System checks
-if (floatval(phpversion()) < 5.2)    die('Please upgrade to PHP 5.2 or higher');
-if (!is_dir(c::get('root.site')))    die('The site directory could not be found');
+if (floatval(phpversion()) < 5.2) die('Please upgrade to PHP 5.2 or higher');
+if (!is_dir(c::get('root.site'))) die('The site directory could not be found');
 
 # Load system classes
 require_once(c::get('root.system') . '/lib/load.php');
