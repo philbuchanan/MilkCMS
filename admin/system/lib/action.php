@@ -22,8 +22,9 @@ class action {
 		
 	}
 	
-	private static function toUrl($location = c::get('home')) {
+	private static function toUrl($location = null) {
 	
+		if (!$location) $location = c::get('home');
 		header('Location: ' . $location);
 		
 	}

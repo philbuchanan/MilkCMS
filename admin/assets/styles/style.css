@@ -103,7 +103,7 @@ textarea {
 html,
 body {
   font: 14px/20px Helvetica, Arial, sans-serif;
-  color: #000;
+  color: #333;
 }
 h1 {
   color: #353b48;
@@ -124,9 +124,22 @@ h2 span {
   font-size: 14px;
   font-weight: normal;
 }
+p.message {
+  font-size: 13px;
+  line-height: 15px;
+  padding: 12px 20px;
+  margin: 12px 0 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
 p.error {
-  color: #f00;
-  margin: 10px 0 0 20px;
+  background: #ffebe8;
+  border: 1px solid #c00;
+}
+p.success {
+  background: #e8ffe9;
+  border: 1px solid #00cc0a;
 }
 strong {
   font-weight: bold;
@@ -142,6 +155,9 @@ em {
 }
 .login-container {
   width: 275px;
+}
+.clear {
+  clear: both;
 }
 /* FORMS
    ---------------------------------- */
@@ -161,11 +177,11 @@ form.login {
   color: #fff;
   background: #353b48;
   width: 275px;
-  padding: 20px;
+  padding: 20px 20px 24px;
   overflow: auto;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 form label {
   display: block;
@@ -181,7 +197,7 @@ form input {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
-  width: 261px;
+  width: 263px;
   margin-bottom: 14px;
   padding: 8px 6px;
   border: none;
@@ -217,6 +233,14 @@ form #password {
 }
 /* NAVIGATION & LINKS
    ---------------------------------- */
+/* Actions */
+ul.actions {
+  list-style: none;
+  margin: 0;
+}
+ul.actions li {
+  float: left;
+}
 /* Links */
 a {
   color: #0092d5;
