@@ -39,12 +39,7 @@ class app {
 		if (session::isLoggedIn()) {
 			
 			# Check for loggout link
-			if (isset($_GET['logout'])) {
-			
-				session::logout();
-				header('Location: ' . c::get('home'));
-				
-			}
+			if (isset($_GET['action'])) action::doAction($_GET['action']);
 			
 			# Load admin panel
 			require_once(c::get('root.site') . '/templates/index.php');
