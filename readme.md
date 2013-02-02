@@ -16,7 +16,7 @@ Features:
 
 The current the requirements of Milk CMS are:
 
-- PHP v5.2+
+- PHP v5.3+
 - Apache server
 - mod_rewrite module enabled
 
@@ -42,20 +42,60 @@ To turn caching on simple set the desired amount of time a cached file should be
 
 You can set the number of articles you want to display on a page in the site/config/config.php file.
 
-## How to Format Article Files
+## Admin Panel
 
-The fields used in your article files are entirely up to you, however the specific format of the document is critical. Each field must be separated by four hyphens (----) on its own line. The title of the field should be in snake_case followed by a colon. You may use capitals, but note that Milk CMS will lowercase your field titles for template usage. Here is an example field:
+MilkCMS also has a simple admin panel for handling simple CMS tasks. The panel is installed by default. If you would prefer not to use it, simply delete the 'admin' folder.
+
+Admin panel features:
+
+- upload new articles
+- upload supporting images
+- empty cache folders
+- delete articles
+
+### Admin Panel Setup
+
+Setting up the admin panel is easy. For a basic install, simply edit the default admin user account located in admin/site/accounts/admin.php file. If you are changing the username, make sure the file name and username match. So for admin.php, your file should look like:
+
+    username: admin
+    password: hashedpassword
+    salt: ###
+
+Be sure to change the password to something of your own choosing. Never leave the password field blank or you site might be easily compromised.
+
+### Adding Accounts
+
+To add additional user accounts simply add new account files to the admin/site/accounts/ folder. Each new account username should match the filename. So if the desired username is 'jdoe', the account filename should be 'jdoe.php'.
+
+Be sure to change the password to something of your own choosing. Never leave the password field blank or you site might be easily compromised.
+
+### Install in a sub directory
+
+If you have chosen to install MilkCMS in a sub directory make sure to change the rewrite base in the admin panel config file as well (admin/site/config/config.php). For example, if you installed MilkCMS in a folder called 'milk', change the admin panel rewrite base to '/milk/admin/'.
+
+## Articles
+
+### How to Format Article Files
+
+The fields used in your article files are entirely up to you, however the specific format of the document is critical. Each field must be separated by four hyphens (----) on its own line. The title of the field should be in snake_case followed by a colon. You may use capitals, but note that Milk CMS will lowercase your field titles for template usage. Here is an example file:
 
     Title: The Title of the Article
     ----
+    Date: 2013/02/01
+    ----
+    Text:
+    
+    This is the article!
 
-## Accessing Fields in Templates
+## Templates
+
+### Accessing Fields in Templates
 
 Accessing your fields in templates is very easy. In both archive and article templates simply use:
 
     <?php echo $article['title']; ?>
 
-Milk CMS will only create/reserve one field title, that being *permalink*. A permalink will be automatically generate for each article based on its file name. To access this permalink use:
+Milk CMS will only create/reserve one field title, that being *permalink*. A permalink will be automatically generated for each article based on its file name. To access this permalink use:
 
     <?php echo $article['permalink']; ?>
 
@@ -66,8 +106,6 @@ Milk CMS uses a simple loop in order to iterate through the articles on the arch
     <?php foreach ($articles as $article) {
         // Your article code
     } ?>
-
-## Other Template Stuff
 
 ### Pagination
 
