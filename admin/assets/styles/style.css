@@ -102,8 +102,11 @@ textarea {
    ---------------------------------- */
 html,
 body {
-  font: 14px/20px Helvetica, Arial, sans-serif;
   color: #333;
+  background: #eee;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
 }
 h1 {
   color: #353b48;
@@ -235,11 +238,13 @@ form #password {
    ---------------------------------- */
 /* Actions */
 ul.actions {
+  float: right;
   list-style: none;
   margin: 0;
 }
 ul.actions li {
   float: left;
+  margin-left: 15px;
 }
 /* Links */
 a {

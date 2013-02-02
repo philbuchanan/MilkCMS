@@ -33,7 +33,13 @@ button, input, select, textarea {margin: 0;}
 /* FONT TREATMENTS
    ---------------------------------- */
  
-html, body {font: 14px/20px Helvetica, Arial, sans-serif; color: #333;}
+html, body {
+	color: #333;
+	background: #eee;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+}
 h1 {
 	color: @deepblue;
 	font-size: 22px;
@@ -166,10 +172,12 @@ form {
 
 /* Actions */
 ul.actions {
+	float: right;
 	list-style: none;
 	margin: 0;
 	li {
 		float: left;
+		margin-left: 15px;
 	}
 }
 

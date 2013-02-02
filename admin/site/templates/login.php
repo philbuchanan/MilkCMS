@@ -6,7 +6,7 @@
 	
 		<h2>Log In</h2>
 		
-		<form class="login<?php if (isset($login) && $login === false) echo ' login-error'; ?>" action="<?php c::get('home'); ?>" method="post">
+		<form class="login<?php if (isset($login) && $login === false) echo ' login-error'; ?>" action="<?php echo c::get('home'); ?>" method="post">
 			<label for="username">Username</label>
 			<input type="text" name="username" id="username" <?php if (isset($_POST['username'])) echo 'value="' . $_POST['username'] . '"'; ?> />
 			<label for="password">Password</label>
