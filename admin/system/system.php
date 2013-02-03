@@ -11,6 +11,7 @@ c::set('version', '0.1');
 c::set('root',        $root);
 c::set('root.system', $root . '/system');
 c::set('root.site',   $root . '/site');
+c::set('root.content',$root . '/../content');
 c::set('server_name', $_SERVER['SERVER_NAME']);
 c::set('domain',      'http://' . $_SERVER['HTTP_HOST']);
 c::set('rewritebase', '/admin/');

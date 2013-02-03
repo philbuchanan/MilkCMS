@@ -4,35 +4,39 @@ class app {
 
 	static public function initiate() {
 		
-		# Auto login if password remembered
-		if (cookie::get('username') && cookie::get('password')) {
-			
-			$login = users::login(cookie::get('username'), cookie::get('password'));
-			
-			if ($login) session::validateUser($login);
-			
-		}
+		if (!session::isLoggedIn()) {
 		
-		# Login form submission
-		if (isset($_POST['login'])) {
-			
-			$login = users::login($_POST['username'], $_POST['password']);
-			
-			if ($login) {
-				
-				# Set session variables
-				session::validateUser($login);
-				
-				# If remember checked
-				if (isset($_POST['remember'])) {
-					
-					cookie::set('username', $_POST['username']);
-					cookie::set('password', $_POST['password']);
-				
-				}
-				
+			# Auto login if password remembered
+			if (cookie::get('username') && cookie::get('password')) {
+			    
+			    $login = users::login(cookie::get('username'), cookie::get('password'));
+			    
+			    if ($login) session::validateUser($login);
+			    
 			}
-		
+			
+			# Login form submission
+			if (isset($_POST['login'])) {
+			    
+			    $login = users::login($_POST['username'], $_POST['password']);
+			    
+			    if ($login) {
+			    	
+			    	# Set session variables
+			    	session::validateUser($login);
+			    	
+			    	# If remember checked
+			    	if (isset($_POST['remember'])) {
+			    		
+			    		cookie::set('username', $_POST['username']);
+			    		cookie::set('password', $_POST['password']);
+			    	
+			    	}
+			    	
+			    }
+			
+			}
+			
 		}
 		
 		# Check login state
@@ -41,8 +45,21 @@ class app {
 			# Check for loggout link
 			if (isset($_GET['action'])) action::doAction($_GET['action']);
 			
-			# Load admin panel
-			require_once(c::get('root.site') . '/templates/index.php');
+			$url = str_replace(c::get('rewritebase'), '', $_SERVER['REQUEST_URI']);
+			
+			if ($url == 'articles') {
+				
+				# Load articles page
+				$files = files::listDir();
+				require_once(c::get('root.site') . '/templates/articles.php');
+			
+			}
+			else {
+				
+				# Load admin panel
+				require_once(c::get('root.site') . '/templates/index.php');
+			
+			}
 		
 		}
 		else {

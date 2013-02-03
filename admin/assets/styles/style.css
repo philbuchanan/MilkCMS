@@ -127,6 +127,9 @@ h2 span {
   font-size: 14px;
   font-weight: normal;
 }
+p {
+  margin-bottom: 10px;
+}
 p.message {
   font-size: 13px;
   line-height: 15px;
@@ -161,6 +164,35 @@ em {
 }
 .clear {
   clear: both;
+}
+ul.files {
+  list-style: none;
+  margin: 0;
+}
+ul.files li {
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  margin-bottom: 1px;
+  padding: 8px 12px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+ul.files li a {
+  color: #333;
+}
+ul.files li a:hover {
+  color: #005e89;
+}
+ul.files li span {
+  float: right;
+  font-size: 11px;
+  line-height: 20px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+ul.files li span a {
+  color: #0092d5;
 }
 /* FORMS
    ---------------------------------- */
@@ -240,7 +272,7 @@ form #password {
 ul.actions {
   float: right;
   list-style: none;
-  margin: 0;
+  margin: 10px 0 20px;
 }
 ul.actions li {
   float: left;

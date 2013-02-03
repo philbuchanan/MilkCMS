@@ -13,6 +13,9 @@ class action {
 			case 'clearcache':
 				if (self::clearCache()) self::toUrl();
 				break;
+			case 'delete':
+				self::deleteFile();
+				break;
 		}
 		
 	}
@@ -31,13 +34,11 @@ class action {
 		$dir = '../cache/';
 		
 		if (is_dir($dir)) {
-		
-			$skip = array('.', '..', '.DS_Store');
 			
 			# Create array of filenames
-			$filesarray = array_diff(scandir($dir), $skip);
-			foreach ($filesarray as $file) {
-				if (self::removeFile($dir . $file)) return false;
+			$files = files::listDir($dir);
+			foreach ($files as $file) {
+				if (!self::removeFile($dir . $file)) return false;
 			}
 			
 			return true;
@@ -48,6 +49,18 @@ class action {
 			return false;
 			
 		}
+		
+	}
+	
+	# Delete File
+	private static function deleteFile() {
+		
+		$dir = '../content/';
+		$file = $_GET['file'];
+		
+		if (!self::removeFile($dir . $file)) return false;
+		
+		self::toUrl(c::get('home') . 'articles');
 		
 	}
 	
