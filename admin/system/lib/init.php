@@ -8,32 +8,32 @@ class app {
 		
 			# Auto login if password remembered
 			if (cookie::get('username') && cookie::get('password')) {
-			    
-			    $login = users::login(cookie::get('username'), cookie::get('password'));
-			    
-			    if ($login) session::validateUser($login);
-			    
+				
+				$login = users::login(cookie::get('username'), cookie::get('password'));
+				
+				if ($login) session::validateUser($login);
+				
 			}
 			
 			# Login form submission
 			if (isset($_POST['login'])) {
-			    
-			    $login = users::login($_POST['username'], $_POST['password']);
-			    
-			    if ($login) {
-			    	
-			    	# Set session variables
-			    	session::validateUser($login);
-			    	
-			    	# If remember checked
-			    	if (isset($_POST['remember'])) {
-			    		
-			    		cookie::set('username', $_POST['username']);
-			    		cookie::set('password', $_POST['password']);
-			    	
-			    	}
-			    	
-			    }
+				
+				$login = users::login($_POST['username'], $_POST['password']);
+				
+				if ($login) {
+					
+					# Set session variables
+					session::validateUser($login);
+					
+					# If remember checked
+					if (isset($_POST['remember'])) {
+						
+						cookie::set('username', $_POST['username']);
+						cookie::set('password', $_POST['password']);
+					
+					}
+					
+				}
 			
 			}
 			
