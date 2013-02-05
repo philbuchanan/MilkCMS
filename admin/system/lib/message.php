@@ -24,7 +24,7 @@ class message {
 			if ($error) $class = 'error';
 			else $class = 'success';
 			
-			echo '<p class="message ' . $class . '">' . $message . '</p>';
+			require_once(c::get('root.site') . '/templates/includes/message.php');
 			
 		}
 		
