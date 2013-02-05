@@ -12,9 +12,7 @@
 			<label for="remember" class="remember"><input name="remember" type="checkbox" id="remember" <?php if (isset($_POST['remember'])) echo 'checked'; ?>>Remember Me</label>
 		</form>
 		
-		<?php if (isset($login) && $login === false) { ?>
-			<p class="message error">The username or password was incorrect.</p>
-		<?php } ?>
+		<?php if (isset($message)) $message -> get(); ?>
 	
 	</div>
 

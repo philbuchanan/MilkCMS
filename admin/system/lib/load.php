@@ -14,7 +14,7 @@ class load {
 		require_once($root . '/lib/cookie.php');
 		require_once($root . '/lib/action.php');
 		require_once($root . '/lib/files.php');
-		require_once($root . '/lib/messages.php');
+		require_once($root . '/lib/message.php');
 		require_once($root . '/lib/yaml.php');
 		
 	}

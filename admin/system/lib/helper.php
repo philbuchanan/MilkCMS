@@ -70,6 +70,29 @@ class a {
 	
 }
 
+class yaml {
+	
+	public static function load($file) {
+		
+		if (!file_exists($file)) return false;
+		
+		# Load yaml
+		ob_start();
+		require($file);
+		$yaml = ob_get_contents();
+		ob_end_clean();
+		
+		# Process yaml
+		$yaml = yaml($yaml);
+		
+		if (!is_array($yaml)) return false;
+		
+		return $yaml;
+	
+	}
+
+}
+
 class header {
 	
 	public static function error($code) {

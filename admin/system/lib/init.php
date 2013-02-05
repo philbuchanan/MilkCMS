@@ -34,6 +34,12 @@ class app {
 					}
 					
 				}
+				else {
+				
+					$message = new message();
+					$message -> set('login.failed', true);
+					
+				}
 			
 			}
 			
@@ -43,13 +49,10 @@ class app {
 		if (session::isLoggedIn()) {
 		
 			# Check for loggout link
-			if (isset($_GET['action'])) action::doAction($_GET['action']);
+			if (isset($_GET['action'])) $message = action::doAction($_GET['action']);
 			
 			# Cehck for file upload
-			if (isset($_POST['upload'])) action::doAction('upload');
-			
-			# Check for messages
-			if (isset($_GET['m'])) $status = messages::getMessage($_GET['m']);
+			if (isset($_POST['upload'])) $message = action::doAction('upload');
 			
 			$url = str_replace(c::get('rewritebase'), '', $_SERVER['REQUEST_URI']);
 			$urlstring = explode('?', $url);

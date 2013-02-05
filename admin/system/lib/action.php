@@ -11,13 +11,13 @@ class action {
 				self::logout();
 				break;
 			case 'clearcache':
-				self::clearCache();
+				return self::clearCache();
 				break;
 			case 'upload':
-				self::uploadFile();
+				return self::uploadFile();
 				break;
 			case 'delete':
-				self::deleteFile();
+				return self::deleteFile();
 				break;
 		}
 		
@@ -34,6 +34,8 @@ class action {
 	# Clear cache
 	private static function clearCache() {
 	
+		$message = new message();
+		
 		$dir = '../cache/';
 		
 		if (is_dir($dir)) {
@@ -41,28 +43,32 @@ class action {
 			# Create array of filenames
 			$files = files::listDir($dir);
 			foreach ($files as $file) {
-				if (!files::remove($dir . $file)) self::toUrl('?m=cache.error');
+				if (!files::remove($dir . $file)) $message -> set('cache.file.error', true);
 			}
 			
-			if (!files::remove($dir)) self::toUrl('?m=cache.error');
+			if (!files::remove($dir)) $message -> set('cache.dir.error', true);
 			
-			self::toUrl('?m=cache.clear');
+			$message -> set('cache.clear.success');
 			
 		}
 		else {
 		
-			self::toUrl('?m=cache.error');
+			$message -> set('cache.exist.error', true);
 			
 		}
+		
+		return $message;
 		
 	}
 	
 	# Upload File
 	private static function uploadFile() {
+	
+		$message = new message();
 		
 		# Check file size
-		if ($_FILES['uploadedfile']['size'] <= 0) self::toUrl('?m=files.nofile');
-		if ($_FILES['uploadedfile']['size'] > 100000) self::toUrl('?m=files.large');
+		if ($_FILES['uploadedfile']['size'] <= 0) $message -> set('files.nofile', true);
+		if ($_FILES['uploadedfile']['size'] > 100000) $message -> set('files.large', true);
 		
 		# Check file type
 		$filetype = $_FILES['uploadedfile']['type'];
@@ -78,22 +84,28 @@ class action {
 		# Define target page
 		if (in_array($filetype, $imagetypes)) $target_path = $imagesdir . basename($_FILES['uploadedfile']['name']);
 		else if ($filetype == 'text/plain') $target_path = $filesdir . basename($_FILES['uploadedfile']['name']);
-		else self::toUrl('?m=files.compatible');
+		else $message -> set('files.compatible', true);
 		
 		# Move file
-		if (files::upload($_FILES['uploadedfile']['tmp_name'], $target_path)) self::toUrl('?m=files.upload.success');
-		else self::toUrl('?m=files.upload.error');
+		if (files::upload($_FILES['uploadedfile']['tmp_name'], $target_path)) $message -> set('files.upload.success');
+		else $message -> set('files.upload.error', true);
+		
+		return $message;
 		
 	}
 	
 	# Delete File
 	private static function deleteFile() {
+	
+		$message = new message();
 		
 		$dir = '../content/';
 		$file = $_GET['file'];
 		
-		if (files::remove($dir . $file)) self::toUrl(c::get('home') . 'articles?m=file.delete.success');
-		else self::toUrl(c::get('home') . 'articles?m=file.delete.error');
+		if (files::remove($dir . $file)) $message -> set('file.delete.success');
+		else $message -> set('file.delete.error', true);
+		
+		return $message;
 		
 	}
 	

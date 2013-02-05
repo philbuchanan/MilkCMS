@@ -14,8 +14,6 @@
 	
 	<?php include('includes/nav.php'); ?>
 	
-	<?php if (isset($status['message'])) { ?>
-		<p class="message <?php if ($status['error']) echo 'error'; elseif (!$status['error']) echo 'success'; ?>"><?php echo $status['message']; ?></p>
-	<?php } ?>
+	<?php if (isset($message)) $message -> get(); ?>
 	
 <?php include('includes/footer.php'); ?>
