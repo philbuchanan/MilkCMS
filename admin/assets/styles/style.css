@@ -117,10 +117,10 @@ h1 {
 }
 h2 {
   color: #353b48;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 22px;
   font-weight: bold;
-  margin: 18px 0 8px;
+  margin: 18px 0 10px 20px;
 }
 h2 span {
   color: #0092d5;
@@ -129,6 +129,7 @@ h2 span {
 }
 p {
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 p.message {
   font-size: 13px;
@@ -167,13 +168,13 @@ em {
 }
 ul.files {
   list-style: none;
-  margin: 0;
+  margin: 0 0 18px;
 }
 ul.files li {
   background: #fff;
   border: 1px solid #d6d6d6;
   margin-bottom: 1px;
-  padding: 8px 12px;
+  padding: 8px 20px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -202,21 +203,22 @@ ul.files li span a {
   height: 250px;
   margin-top: -165px;
 }
-.login-box h2 {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0 0 10px 20px;
-}
-form.login {
+form.login-form,
+form.upload-form {
   clear: both;
   color: #fff;
   background: #353b48;
-  width: 275px;
   padding: 20px 20px 24px;
   overflow: auto;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+form.login-form {
+  width: 275px;
+}
+form.upload-form {
+  width: 410px;
 }
 form label {
   display: block;
@@ -263,6 +265,11 @@ form input[type=checkbox] {
   width: auto;
   margin: 2px 4px 0 0;
 }
+form input.upload {
+  color: #fff;
+  width: 100%;
+  padding: 0;
+}
 form #password {
   margin-bottom: 20px;
 }
@@ -270,13 +277,38 @@ form #password {
    ---------------------------------- */
 /* Actions */
 ul.actions {
-  float: right;
+  display: block;
+  background: #353b48;
   list-style: none;
-  margin: 10px 0 20px;
+  margin: 2px 0 20px;
+  overflow: auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 ul.actions li {
   float: left;
-  margin-left: 15px;
+  margin-left: 2px;
+}
+ul.actions li a {
+  display: block;
+  color: #fff;
+  padding: 6px 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+ul.actions li a:hover {
+  background: #005e89;
+  text-decoration: none;
+}
+ul.actions li:first-child {
+  margin-left: 0;
+  padding-left: 12px;
+}
+ul.actions li.logout {
+  float: right;
+  padding-right: 12px;
 }
 /* Links */
 a {

@@ -49,10 +49,10 @@ h1 {
 }
 h2 {
 	color: @deepblue;
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 22px;
 	font-weight: bold;
-	margin: 18px 0 8px;
+	margin: 18px 0 10px 20px;
 	span {
 		color: @lightblue;
 		font-size: 14px;
@@ -61,6 +61,7 @@ h2 {
 }
 p {
 	margin-bottom: 10px;
+	margin-left: 20px;
 	&.message {
 		font-size: 13px;
 		line-height: 15px;
@@ -96,12 +97,12 @@ em {font-style: italic;}
 
 ul.files {
 	list-style: none;
-	margin: 0;
+	margin: 0 0 18px;
 	li {
 		background: #fff;
 		border: 1px solid #d6d6d6;
 		margin-bottom: 1px;
-		padding: 8px 12px;
+		padding: 8px 20px;
 		-webkit-border-radius: 5px;
 		   -moz-border-radius: 5px;
 		        border-radius: 5px;
@@ -129,24 +130,21 @@ ul.files {
 	top: 50%;
 	height: 250px;
 	margin-top: -165px;
-	h2 {
-		font-size: 20px;
-		font-weight: bold;
-		margin: 0 0 10px 20px;
-	}
 }
 form {
-	&.login {
+	&.login-form,
+	&.upload-form{
 		clear: both;
 		color: #fff;
 		background: @deepblue;
-		width: 275px;
 		padding: 20px 20px 24px;
 		overflow: auto;
 		-webkit-border-radius: 5px;
 		   -moz-border-radius: 5px;
 		        border-radius: 5px;
 	}
+	&.login-form {width: 275px;}
+	&.upload-form {width: 410px;}
 	label {
 		display: block;
 		font-size: 14px;
@@ -189,6 +187,11 @@ form {
 			width: auto;
 			margin: 2px 4px 0 0;
 		}
+		&.upload {
+			color: #fff;
+			width: 100%;
+			padding: 0;
+		}
 	}
 	#password {margin-bottom: 20px;}
 }
@@ -199,12 +202,38 @@ form {
 
 /* Actions */
 ul.actions {
-	float: right;
+	display: block;
+	background: @deepblue;
 	list-style: none;
-	margin: 10px 0 20px;
+	margin: 2px 0 20px;
+	//padding: 0 12px;
+	overflow: auto;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
 	li {
 		float: left;
-		margin-left: 15px;
+		margin-left: 2px;
+		a {
+			display: block;
+			color: #fff;
+			padding: 6px 8px;
+			-webkit-border-radius: 3px;
+			   -moz-border-radius: 3px;
+			        border-radius: 3px;
+			&:hover {
+				background: darken(@lightblue, 15%);
+				text-decoration: none;
+			}
+		}
+		&:first-child {
+			margin-left: 0;
+			padding-left: 12px;
+		}
+		&.logout {
+			float: right;
+			padding-right: 12px;
+		}
 	}
 }
 

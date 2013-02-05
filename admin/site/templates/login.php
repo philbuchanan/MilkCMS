@@ -3,7 +3,7 @@
 	<div class="login-box">
 	
 		<h2>Log In</h2>
-		<form class="login<?php if (isset($login) && $login === false) echo ' login-error'; ?>" action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+		<form class="login-form<?php if (isset($login) && $login === false) echo ' login-error'; ?>" action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
 			<label for="username">Username</label>
 			<input type="text" name="username" id="username" <?php if (isset($_POST['username'])) echo 'value="' . $_POST['username'] . '"'; ?> />
 			<label for="password">Password</label>

@@ -22,6 +22,28 @@ class files {
 		return count(glob($dir . '/*.txt'));
 		
 	}
+	
+	public static function upload($file, $path) {
+	
+		if (move_uploaded_file($file, $path)) return true;
+		else return false;
+	
+	}
+	
+	public static function remove($path) {
+	
+		if (file_exists($path)) {
+			if (is_dir($path)) {
+				if (rmdir($path)) return true;
+			}
+			else {
+				if (unlink($path)) return true;
+			}
+		}
+		
+		return false;
+		
+	}
 
 }
 

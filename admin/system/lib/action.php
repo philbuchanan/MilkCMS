@@ -3,7 +3,7 @@
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class action {
-
+	
 	public static function doAction($action) {
 		
 		switch ($action) {
@@ -11,7 +11,10 @@ class action {
 				self::logout();
 				break;
 			case 'clearcache':
-				if (self::clearCache()) self::toUrl();
+				self::clearCache();
+				break;
+			case 'upload':
+				self::uploadFile();
 				break;
 			case 'delete':
 				self::deleteFile();
@@ -38,17 +41,48 @@ class action {
 			# Create array of filenames
 			$files = files::listDir($dir);
 			foreach ($files as $file) {
-				if (!self::removeFile($dir . $file)) return false;
+				if (!files::remove($dir . $file)) self::toUrl('?m=cache.error');
 			}
 			
-			return true;
+			if (!files::remove($dir)) self::toUrl('?m=cache.error');
+			
+			self::toUrl('?m=cache.clear');
 			
 		}
 		else {
 		
-			return false;
+			self::toUrl('?m=cache.error');
 			
 		}
+		
+	}
+	
+	# Upload File
+	private static function uploadFile() {
+		
+		# Check file size
+		if ($_FILES['uploadedfile']['size'] <= 0) self::toUrl('?m=files.nofile');
+		if ($_FILES['uploadedfile']['size'] > 100000) self::toUrl('?m=files.large');
+		
+		# Check file type
+		$filetype = $_FILES['uploadedfile']['type'];
+		$imagetypes = array(
+			'image/gif',
+			'image/jpeg',
+			'image/png',
+		);
+		
+		$filesdir = '../content/';
+		$imagesdir = '../content/images/';
+		
+		# Define target page
+		if (in_array($filetype, $imagetypes)) $target_path = $imagesdir . basename($_FILES['uploadedfile']['name']);
+		else if ($filetype == 'text/plain') $target_path = $filesdir . basename($_FILES['uploadedfile']['name']);
+		else self::toUrl('?m=files.compatible');
+		
+		# Move file
+		if (files::upload($_FILES['uploadedfile']['tmp_name'], $target_path)) self::toUrl('?m=files.upload.success');
+		else self::toUrl('?m=files.upload.error');
 		
 	}
 	
@@ -58,16 +92,8 @@ class action {
 		$dir = '../content/';
 		$file = $_GET['file'];
 		
-		if (!self::removeFile($dir . $file)) return false;
-		
-		self::toUrl(c::get('home') . 'articles');
-		
-	}
-	
-	private static function removeFile($file) {
-		
-		if (unlink($file)) return true;
-		else return false;
+		if (files::remove($dir . $file)) self::toUrl(c::get('home') . 'articles?m=file.delete.success');
+		else self::toUrl(c::get('home') . 'articles?m=file.delete.error');
 		
 	}
 	

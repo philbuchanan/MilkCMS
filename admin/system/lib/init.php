@@ -41,13 +41,20 @@ class app {
 		
 		# Check login state
 		if (session::isLoggedIn()) {
-			
+		
 			# Check for loggout link
 			if (isset($_GET['action'])) action::doAction($_GET['action']);
 			
-			$url = str_replace(c::get('rewritebase'), '', $_SERVER['REQUEST_URI']);
+			# Cehck for file upload
+			if (isset($_POST['upload'])) action::doAction('upload');
 			
-			if ($url == 'articles') {
+			# Check for messages
+			if (isset($_GET['m'])) $status = messages::getMessage($_GET['m']);
+			
+			$url = str_replace(c::get('rewritebase'), '', $_SERVER['REQUEST_URI']);
+			$urlstring = explode('?', $url);
+			
+			if ($urlstring[0] == 'articles') {
 				
 				# Load articles page
 				$files = files::listDir();
