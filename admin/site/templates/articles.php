@@ -4,7 +4,7 @@
 	
 	<p>There are <?php echo files::countArticles(); ?> articles.</p>
 	
-	<p>Delete files is permanent and cannot be undone.</p>
+	<p>Deleting files is permanent and cannot be undone.</p>
 	
 	<ul class="files">
 		<?php foreach($files as $file) { ?>
