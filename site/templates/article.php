@@ -1,9 +1,9 @@
 <?php include('includes/header.php'); ?>
 	
 	<section>
-		<h2><?php echo SmartyPants($article['title']); ?></h2>
+		<h2><?php echo SmartyPants($article -> get('title', false)); ?></h2>
 		<article>
-			<?php echo SmartyPants(Markdown($article['text'])); ?>
+			<?php echo SmartyPants(Markdown($article -> get('text', false))); ?>
 		</article>
 	</section>
 	

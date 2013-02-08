@@ -52,7 +52,7 @@ class app {
 					else {
 						
 						# Get the article
-						$article = files::readFiles($url . '.txt');
+						$article = new article($url . '.txt');
 						
 						require_once(c::get('root.templates') . '/article.php');
 					
@@ -79,9 +79,8 @@ class app {
 		# Get page details
 		pagination::pageDetails($page);
 		
-		# Get article list array
-		$content = new articles();
-		$articles = $content -> getArticles();
+		# Get article list in an array
+		$articles = files::getArticles();
 		
 		require_once(c::get('root.templates') . '/index.php');
 	

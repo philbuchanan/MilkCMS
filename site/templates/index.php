@@ -7,9 +7,9 @@ include('includes/header.php');
 		?>
 		
 		<section>
-			<h3><a href="<?php echo $article['permalink'] ?>"><?php echo SmartyPants($article['title']); ?></a></h3>
+			<h3><a href="<?php $article -> get('permalink'); ?>"><?php echo SmartyPants($article -> get('title', false)); ?></a></h3>
 			<article>
-				<?php echo SmartyPants(Markdown($article['text'])); ?>
+				<?php echo SmartyPants(Markdown($article -> get('text', false))); ?>
 			</article>
 		</section>
 		<div style="clear:both;"></div>

@@ -13,7 +13,7 @@ class search {
 		$search_results = array();
 		foreach ($articlelist as $article) {
 			
-			$details = files::readFiles($article);
+			$details = new article($article);
 			if (a::contains($details, strip_tags($search_string))) array_push($search_results, $details);
 			
 		}

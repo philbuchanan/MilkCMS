@@ -41,7 +41,7 @@ class cache {
 		ob_start();
 		
 		# Get the article
-		$article = files::readFiles($filename . '.txt');
+		$article = new article($filename . '.txt');
 		
 		require_once(c::get('root.templates') . '/article.php');
 		

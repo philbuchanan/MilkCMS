@@ -13,7 +13,7 @@
 <?php foreach ($articles as $article) { ?>
 	
 	<section>
-		<h3><a href="<?php echo $article['permalink'] ?>"><?php echo Smartypants($article['title']); ?></a></h3>
+		<h3><a href="<?php $article -> get('permalink'); ?>"><?php echo Smartypants($article -> get('title', false)); ?></a></h3>
 	</section>
 	
 <?php } ?>

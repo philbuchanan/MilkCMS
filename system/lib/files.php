@@ -16,33 +16,37 @@ class files {
 		
 	}
 	
+	public static function getArticles($start = null, $end = null) {
+	
+		# Set start and end article to retrieve
+		if (!$start) $start = pagination::get('start');
+		if (!$end) $end = pagination::get('end');
+		
+		# Get array of files
+		$filesarray = files::listDir();
+		natsort($filesarray);
+		$articlelist = array_reverse($filesarray, false);
+		
+		# Push artile object into array
+		$i = $start;
+		$articles = array();
+		
+		while ($i <= $end) {
+		
+			array_push($articles, new article($articlelist[$i]));
+			$i++;
+		
+		}
+		
+		return $articles;
+		
+	}
+	
 	public static function countArticles() {
 		
 		$dir = c::get('root.content');
 		return count(glob($dir . '/*.txt'));
 		
-	}
-	
-	public static function readFiles($file) {
-	
-		# Separate file sections
-		$contents = explode('----', file_get_contents(c::get('root.content') . '/' . $file));
-		$contents_arr = array();
-		
-		# Generate URL
-		$filename = explode('.', $file, 2);
-		$contents_arr['permalink'] = c::get('home') . $filename[0];
-		
-		# Create article array
-		foreach ($contents as $items) {
-		
-			$details = explode(':', $items, 2);
-			$contents_arr[strtolower(trim($details[0]))] = trim($details[1]);
-			
-		}
-		
-		return $contents_arr;
-	
 	}
 	
 	public static function set($filename, $contents) {
