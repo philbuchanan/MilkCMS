@@ -6,22 +6,12 @@ class article {
 	
 	public function __construct($file) {
 	
-		# Separate file sections
-		$contents = explode('----', file_get_contents(c::get('root.content') . '/' . $file));
-		
-		# Set permalink member variable
-		$filename = explode('.', $file, 2);
-		$this -> permalink = c::get('home') . $filename[0];
+		# Get file sections array
+		$contents = $this -> getFileContentsArr($file);
 		
 		# Set article member varibales
-		foreach ($contents as $items) {
-		
-			$details = explode(':', $items, 2);
-			$key = strtolower(trim($details[0]));
-			$value = trim($details[1]);
-			$this -> $key = $value;
-			
-		}
+		$this -> setMemberVar($contents);
+		$this -> setPermalink($file);
 	
 	}
 	
@@ -31,6 +21,32 @@ class article {
 		
 		if ($echo) echo $this -> $key;
 		else return $this -> $key;
+		
+	}
+	
+	private function getFileContentsArr($file) {
+		
+		return explode('----', file_get_contents(c::get('root.content') . '/' . $file));
+		
+	}
+	
+	private function setMemberVar($contents) {
+		
+		foreach ($contents as $items) {
+		
+			$details = explode(':', $items, 2);
+			$key = strtolower(trim($details[0]));
+			$value = trim($details[1]);
+			$this -> $key = $value;
+			
+		}
+		
+	}
+	
+	private function setPermalink($file) {
+		
+		$filename = explode('.', $file, 2);
+		$this -> permalink = c::get('home') . $filename[0];
 		
 	}
 	

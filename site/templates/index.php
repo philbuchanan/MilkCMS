@@ -2,7 +2,7 @@
 
 include('includes/header.php');
 	
-	foreach ($articles as $article) {
+	foreach ($articles as $article) :
 		
 		?>
 		
@@ -14,7 +14,7 @@ include('includes/header.php');
 		</section>
 		<div style="clear:both;"></div>
 		
-	<?php } ?>
+	<?php endforeach; ?>
 	
 	<nav>
 		<p>

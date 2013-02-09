@@ -1,10 +1,6 @@
 
 .DS_Store
 
-<<<<<<< HEAD
-site/config/config.localhost.php
-=======
 config.localhost.php
 
 admin/site/accounts/pbuchanan.php
->>>>>>> Basic login system for admin panel

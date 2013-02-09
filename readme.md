@@ -87,7 +87,25 @@ The fields used in your article files are entirely up to you, however the specif
     
     This is the article!
 
+Save your .txt files in the content folder, numbered in the reverse order you want them to appear (number one will be the last article in the listing, followed by number two etc.). Make sure to only use upper and lowercase letters and numbers in your filenames. Do not use periods. Here are a few examples of some filenames:
+
+    // Good
+    1-welcome.txt
+    2-fancy-title.txt
+    
+    // Bad
+    welcome.txt
+    1-welcome.md
+    1-this&that.txt
+    1-welcome.to.my.blog.txt
+
 ## Templates
+
+You can create your own template for your site by modifiying the existing tempate found in /site/templates/. All assets that must be accessible to the site must be placed in the /assets/ folder (images and stylesheets, for example). There are three required template pages:
+
+- index.php: the default page of the site, displays the list of articles with pagination
+- article.php: a single article page template
+- error.php: for handling 404 and other errors
 
 ### Accessing Fields in Templates
 
@@ -146,6 +164,20 @@ This can be used for linking to stylesheets:
 Or linking to the homepage:
 
     <a href="<?php echo c::get('home'); ?>" />Home</a>
+
+### Search
+
+A fourth, but optional template is the search.php template. This will allow you to customize the look of the search results page. There are a few variables you can use to help you with this.
+
+The search string:
+
+    <?php echo $search -> string; ?>
+
+The number of returned search results:
+
+    <?php echo $search -> results; ?>
+
+You can use the same loop for search results as you would for the archive page.
 
 ### Version Number
 
