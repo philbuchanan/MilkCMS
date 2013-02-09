@@ -43,7 +43,7 @@ class cache {
 		# Get the article
 		$article = new article($filename . '.txt');
 		
-		require_once(c::get('root.templates') . '/article.php');
+		require_once(template::get('article'));
 		
 		echo '<!-- From cache. Generated ' . date('r', time()) . '. -->';
 		

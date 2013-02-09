@@ -21,17 +21,16 @@ class app {
 		
 			if (strstr($url, 'page=')) {
 				
-				$page = str_replace('page=', '', $url);
-				self::loadIndex($page);
+				self::loadIndex(str_replace('page=', '', $url));
 				
 			}
 			elseif (strstr($url, '?search=')) {
 				
+				# Get search results
 				$search = new search($url);
 				$articles = $search -> getResults();
 				
-				if (is_file(c::get('root.templates') . '/search.php')) require_once(c::get('root.templates') . '/search.php');
-				else require_once(c::get('root.templates') . '/index.php');
+				require_once(template::get('search'));
 				
 			}
 			else {
@@ -52,7 +51,7 @@ class app {
 						# Get the article
 						$article = new article($url . '.txt');
 						
-						require_once(c::get('root.templates') . '/article.php');
+						require_once(template::get('article'));
 					
 					}
 				
@@ -80,7 +79,7 @@ class app {
 		# Get article list in an array
 		$articles = files::getArticles();
 		
-		require_once(c::get('root.templates') . '/index.php');
+		require_once(template::get());
 	
 	}
 
