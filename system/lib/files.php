@@ -12,7 +12,10 @@ class files {
 		$skip = array('.', '..', '.DS_Store', 'images');
 		
 		# Create array	of filenames
-		return array_diff(scandir($dir), $skip);
+		$files = array_diff(scandir($dir), $skip);
+		
+		natsort($files);
+		return array_reverse($files, false);
 		
 	}
 	
@@ -23,9 +26,7 @@ class files {
 		if (!$end) $end = pagination::get('end');
 		
 		# Get array of files
-		$filesarray = files::listDir();
-		natsort($filesarray);
-		$articlelist = array_reverse($filesarray, false);
+		$files = files::listDir();
 		
 		# Push artile object into array
 		$i = $start;
@@ -33,7 +34,7 @@ class files {
 		
 		while ($i <= $end) {
 		
-			array_push($articles, new article($articlelist[$i]));
+			array_push($articles, new article($files[$i]));
 			$i++;
 		
 		}

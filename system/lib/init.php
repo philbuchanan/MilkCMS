@@ -27,13 +27,11 @@ class app {
 			}
 			elseif (strstr($url, '?search=')) {
 				
-				$search = true;
+				$search = new search($url);
+				$articles = $search -> getResults();
 				
-				$search = str_replace('?search=', '', $url);
-				$search_string = str_replace('+', ' ', $search);
-				$articles = search::get_results($search_string);
-				
-				require_once(c::get('root.templates') . '/search.php');
+				if (is_file(c::get('root.templates') . '/search.php')) require_once(c::get('root.templates') . '/search.php');
+				else require_once(c::get('root.templates') . '/index.php');
 				
 			}
 			else {
