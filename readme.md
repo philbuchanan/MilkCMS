@@ -93,19 +93,25 @@ The fields used in your article files are entirely up to you, however the specif
 
 Accessing your fields in templates is very easy. In both archive and article templates simply use:
 
-    <?php echo $article['title']; ?>
+    <?php $article -> get('field_name'); ?>
+
+By default, the field will be echoed. If you want to use the field for something else (like checking if the field exists or is empty), you can have the function simply return the value by passing false as the second parameter:
+
+    <?php if ($article -> get('field_name', false)) {
+        // Do something
+    } ?>
 
 Milk CMS will only create/reserve one field title, that being *permalink*. A permalink will be automatically generated for each article based on its file name. To access this permalink use:
 
-    <?php echo $article['permalink']; ?>
+    <?php $article -> get('permalink'); ?>
 
 ### The Loop
 
 Milk CMS uses a simple loop in order to iterate through the articles on the archive template. The loop looks like this:
 
-    <?php foreach ($articles as $article) {
+    <?php foreach ($articles as $article) :
         // Your article code
-    } ?>
+    endforeach; ?>
 
 ### Pagination
 
@@ -135,7 +141,7 @@ You can get the base URL for the site using:
 
 This can be used for linking to stylesheets:
 
-    <link rel="stylesheet" href="<?php echo c::get('home'); ?>site/templates/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo c::get('home'); ?>assets/styles/style.css" type="text/css" media="screen" />
 
 Or linking to the homepage:
 

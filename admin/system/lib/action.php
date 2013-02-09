@@ -78,8 +78,11 @@ class action {
 			'image/png',
 		);
 		
+		# Set content directories
 		$filesdir = '../content/';
-		$imagesdir = '../content/images/';
+		$imagesdir = '../assets/images/uploads/';
+		
+		if (!is_dir($imagesdir)) mkdir($imagesdir, 0755, true);
 		
 		# Define target page
 		if (in_array($filetype, $imagetypes)) $target_path = $imagesdir . basename($_FILES['uploadedfile']['name']);

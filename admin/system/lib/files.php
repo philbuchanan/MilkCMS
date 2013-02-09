@@ -9,7 +9,7 @@ class files {
 		if (!$dir) $dir = c::get('root.content');
 		
 		if (!is_dir($dir)) return false;
-		$skip = array('.', '..', '.DS_Store', 'images');
+		$skip = array('.', '..', '.DS_Store');
 		
 		# Create array	of filenames
 		return array_diff(scandir($dir), $skip);
