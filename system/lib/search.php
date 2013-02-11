@@ -4,8 +4,8 @@ if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class search {
 
-	var $string = '';
-	var $results = 0;
+	public $string = '';
+	public $results = 0;
 	
 	public function __construct($url) {
 		

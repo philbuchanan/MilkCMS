@@ -26,7 +26,7 @@ class article {
 	
 	private function getFileContentsArr($file) {
 		
-		return explode('----', file_get_contents(c::get('root.content') . '/' . $file));
+		return explode('----', files::read(c::get('root.content') . '/' . $file));
 		
 	}
 	

@@ -19,6 +19,21 @@ class files {
 		
 	}
 	
+	public static function read($path) {
+		
+		if (file_exists($path)) return file_get_contents($path);
+		else return false;
+		
+	}
+	
+	public static function set($filename, $contents) {
+		
+		$fp = fopen($filename, 'w');
+		fwrite($fp, $contents);
+		fclose($fp);
+		
+	}
+	
 	public static function getArticles($start = null, $end = null) {
 	
 		# Set start and end article to retrieve
@@ -47,14 +62,6 @@ class files {
 		
 		$dir = c::get('root.content');
 		return count(glob($dir . '/*.txt'));
-		
-	}
-	
-	public static function set($filename, $contents) {
-		
-		$fp = fopen($filename, 'w');
-		fwrite($fp, $contents);
-		fclose($fp);
 		
 	}
 
