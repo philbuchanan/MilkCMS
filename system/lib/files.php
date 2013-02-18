@@ -34,11 +34,7 @@ class files {
 		
 	}
 	
-	public static function getArticles($start = null, $end = null) {
-	
-		# Set start and end article to retrieve
-		if (!$start) $start = pagination::get('start');
-		if (!$end) $end = pagination::get('end');
+	public static function getArticles($start, $end) {
 		
 		# Get array of files
 		$files = files::listDir();

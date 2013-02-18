@@ -21,7 +21,10 @@ class app {
 		
 			if (strstr($url, 'page=')) {
 				
-				self::loadIndex(str_replace('page=', '', $url));
+				$page = str_replace('page=', '', $url);
+				
+				if ($page == null) header::error(404);
+				else self::loadIndex($page);
 				
 			}
 			elseif (strstr($url, '?search=')) {
@@ -74,10 +77,13 @@ class app {
 		$index = true;
 		
 		# Get page details
-		pagination::pageDetails($page);
+		$pagination = new pagination($page);
+		
+		$start = $pagination -> start;
+		$end   = $pagination -> end;
 		
 		# Get article list in an array
-		$articles = files::getArticles();
+		$articles = files::getArticles($start, $end);
 		
 		require_once(template::get());
 	

@@ -19,8 +19,8 @@ include('includes/header.php');
 	<nav>
 		<p>
 		<?php 
-			if (pagination::get('prev')) echo '<a href="' . pagination::get('prev') . '" class="prev">&larr; Previous Page</a>';
-			if (pagination::get('next')) echo '<a href="' . pagination::get('next') . '" class="next">Next Page &rarr;</a>';
+			$pagination -> getPrevPage();
+			$pagination -> getNextPage();
 		?>
 		</p>
 	</nav>

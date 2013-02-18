@@ -21,6 +21,7 @@ class header {
 		}
 		
 		require_once(template::get('error'));
+		exit;
 		
 	}
 	

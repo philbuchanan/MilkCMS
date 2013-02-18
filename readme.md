@@ -135,15 +135,51 @@ Milk CMS uses a simple loop in order to iterate through the articles on the arch
 
 You can get the previous and next page links using:
 
-    <?php echo pagination::get('prev'); ?>
+    <?php $pagination -> getPrevPage(); ?>
 
 and
 
-    <?php echo pagination::get('next'); ?>
+    <?php $pagination -> getNextPage(); ?>
 
-You can use an if statement to check if the url exists and conditionally show the buttons (if you're on the first of last page).
+This will return:
 
-    <?php if (pagination::get('prev')) {} ?>
+    <a href="/page=#" class="prev">&larr;Previous Page</a>
+
+and:
+
+    <a href="/page=#" class="next">Next Page &rarr;</a>
+    
+
+If you are on the first or last page, the previous and next pages respecively will not be echoed.
+
+You can use your own custom link text by passing the string you would like to use:
+
+    <?php $pagination -> getNextPage('More Articles'); ?>
+
+Will return:
+
+    <a href="/page=#" class="next">More Articles</a>
+
+You can also use the pagination object to return a few other pieces of information about your site.
+
+The current page number:
+
+    <?php $pagination -> get('page'); ?>
+
+The previous and next page number:
+
+    <?php $pagination -> get('prev'); ?>
+    <?php $pagination -> get('next'); ?>
+
+The total number of pages:
+
+    <?php $pagination -> get('pages'); ?>
+
+The total count of articles on the entire site:
+
+    <?php $pagination -> get('articles'); ?>
+
+Don't forget you can set the number of articles to display per page in /site/config/config.php.
 
 ### Site Title
 

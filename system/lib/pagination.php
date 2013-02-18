@@ -4,22 +4,18 @@ if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class pagination {
 
-	private static $pagedetails = array();
+	private $pageurl;
+	public  $start;
+	public  $end;
+	public  $page;
+	public  $pages;
+	public  $next;
+	public  $prev;
+	public  $articles;
 	
-	static function set($key, $value = null) {
+	public function __construct($page) {
 	
-		self::$pagedetails[$key] = $value;
-		
-	}
-
-	static function get($key = null, $default = null) {
-	
-		if (empty($key)) return self::$pagedetails;
-		return a::get(self::$pagedetails, $key, $default);
-		
-	}
-	
-	public static function pageDetails($page) {
+		$this -> pageurl = 'page=';
 		
 		# Set variables
 		$count = files::countArticles();
@@ -27,37 +23,73 @@ class pagination {
 		if (($count / c::get('articlesperpage')) > $pages) $pages++;
 		$start = ($page * c::get('articlesperpage')) - c::get('articlesperpage');
 		$end = ($start + c::get('articlesperpage')) - 1;
-		$next = self::nextPage($page, $pages);
-		$prev = self::prevPage($page);
+		$next = $this -> nextPage($page, $pages);
+		$prev = $this -> prevPage($page);
 		
-		self::set('page',	$page);		# Current page
-		self::set('pages',	$pages);	# Count pages
-		self::set('next',	$next);		# Next page number
-		self::set('prev',	$prev);		# Previous page number
-		self::set('count',	$count);	# Count articles
-		self::set('start',	$start);	# First article number
+		$this -> set('page',     $page);  # Current page
+		$this -> set('pages',    $pages); # Count pages
+		$this -> set('next',     $next);  # Next page number
+		$this -> set('prev',     $prev);  # Previous page number
+		$this -> set('articles', $count); # Count articles
+		$this -> set('start',    $start); # First article number
+		
+		# Check if on a valid page
+		if ($this -> page > $this -> pages) header::error(404);
 		
 		# Last article number
-		if ($end < $count) self::set('end', $end);
-		else self::set('end', $count - 1);
+		if ($end < $count) $this -> set('end', $end);
+		else $this -> set('end', $count - 1);
+	
+	}
+	
+	private function set($key, $value = null) {
+	
+		$this -> $key = $value;
+		
+	}
+
+	public function get($key) {
+	
+		if (!isset($this -> $key)) return false;
+		else return $this -> $key;
 		
 	}
 	
-	private static function nextPage($page, $pages) {
+	private function nextPage($page, $pages) {
 		
 		$page++;
 		
 		if ($page > $pages) return false;
-		return 'page=' . $page;
+		return $page;
 		
 	}
 	
-	private static function prevPage($page) {
+	private function prevPage($page) {
 		
 		$page--;
 		
 		if ($page < 1) return false;
-		return 'page=' . $page;
+		return $page;
+		
+	}
+	
+	public function getNextPage($string = null) {
+		
+		$next = $this -> get('next');
+		if ($next) {
+			if (!$string) $string = 'Next Page &rarr;';
+			echo '<a href="' . c::get('home') . $this -> pageurl . $next . '" class="next">' . $string . '</a>';
+		}
+		
+	}
+	
+	public function getPrevPage($string = null) {
+		
+		$next = $this -> get('prev');
+		if ($next) {
+			if (!$string) $string = '&larr; Previous Page';
+			echo '<a href="' . c::get('home') . $this -> pageurl . $next . '" class="prev">' . $string . '</a>';
+		}
 		
 	}
 
