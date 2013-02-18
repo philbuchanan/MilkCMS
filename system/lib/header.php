@@ -20,7 +20,8 @@ class header {
 				break;
 		}
 		
-		require_once(template::get('error'));
+		$template = new template();
+		require_once($template -> get('error'));
 		exit;
 		
 	}

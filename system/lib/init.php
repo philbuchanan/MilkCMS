@@ -28,18 +28,23 @@ class app {
 				
 			}
 			elseif (strstr($url, '?search=')) {
+			
+				$search = true;
 				
 				# Get search results
 				$search = new search($url);
 				$articles = $search -> getResults();
 				
-				require_once(template::get('search'));
+				$template = new template();
+				require_once($template -> get('search'));
 				
 			}
 			else {
 			
 				if (file_exists(c::get('root.content') . '/' . $url . '.txt')) {
 				
+					$articlepage = true;
+					
 					# Is caching turned on?
 					if (c::get('cacheexpire')) {
 						
@@ -54,7 +59,8 @@ class app {
 						# Get the article
 						$article = new article($url . '.txt');
 						
-						require_once(template::get('article'));
+						$template = new template();
+						require_once($template -> get('article'));
 					
 					}
 				
@@ -85,7 +91,8 @@ class app {
 		# Get article list in an array
 		$articles = files::getArticles($start, $end);
 		
-		require_once(template::get());
+		$template = new template();
+		require_once($template -> get());
 	
 	}
 

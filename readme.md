@@ -2,7 +2,7 @@
 
 A lightweight file based CMS for writing.
 
-Milk CMS is a simple CMS for building single level websites (article listing page and single article page).
+Milk CMS is a simple CMS for building single level websites (article listing page and single article pages).
 
 Features:
 
@@ -106,6 +106,19 @@ You can create your own template for your site by modifiying the existing tempat
 - index.php: the default page of the site, displays the list of articles with pagination
 - article.php: a single article page template
 - error.php: for handling 404 and other errors
+
+### Checking Current Page Template
+
+You may find it useful to know what page template is being called by the system. You can check this using:
+
+    <?php $template -> template; ?>
+
+There are current four possible templates:
+
+- index
+- article
+- search (will return as search, even if the template doesn't exist and it is falling back to index)
+- error
 
 ### Accessing Fields in Templates
 
@@ -223,7 +236,7 @@ Echo current version number of Milk CMS:
 
 ### All Settings
 
-Print all site settings:
+Print all site settings (useful for debugging, but not recommending for production):
 
     <?php
     echo '<pre>';

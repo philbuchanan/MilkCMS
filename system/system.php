@@ -7,7 +7,7 @@ define('ACCESS', true);
 require_once($root . '/system/lib/helper.php');
 
 # Set system config
-c::set('version', '0.4.2');
+c::set('version', '0.4.3');
 c::set('root',           $root);
 c::set('root.system',    $root . '/system');
 c::set('root.site',      $root . '/site');

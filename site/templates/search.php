@@ -6,7 +6,6 @@
 	<input id="search" name="search" type="text" value="<?php if (isset($search -> string)) echo $search -> string; ?>" onmouseup="this.select()" />
 	<input type="submit" value="Search" />
 </form>
-<div style="clear:both"></div>
 
 <?php foreach ($articles as $article) : ?>
 	

@@ -3,8 +3,10 @@
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class template {
-
-	public static function get($template = 'index') {
+	
+	public function get($template = 'index') {
+		
+		$this -> template = $template;
 		
 		$path = self::getPath($template);
 		

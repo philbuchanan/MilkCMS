@@ -12,17 +12,7 @@ include('includes/header.php');
 				<?php echo SmartyPants(Markdown($article -> get('text', false))); ?>
 			</article>
 		</section>
-		<div style="clear:both;"></div>
 		
 	<?php endforeach; ?>
-	
-	<nav>
-		<p>
-		<?php 
-			$pagination -> getPrevPage();
-			$pagination -> getNextPage();
-		?>
-		</p>
-	</nav>
 	
 <?php include('includes/footer.php'); ?>
