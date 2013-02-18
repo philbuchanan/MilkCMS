@@ -28,8 +28,6 @@ class app {
 				
 			}
 			elseif (strstr($url, '?search=')) {
-			
-				$search = true;
 				
 				# Get search results
 				$search = new search($url);
@@ -42,8 +40,6 @@ class app {
 			else {
 			
 				if (file_exists(c::get('root.content') . '/' . $url . '.txt')) {
-				
-					$articlepage = true;
 					
 					# Is caching turned on?
 					if (c::get('cacheexpire')) {
@@ -79,8 +75,6 @@ class app {
 	}
 	
 	private static function loadIndex($page = 1) {
-	
-		$index = true;
 		
 		# Get page details
 		$pagination = new pagination($page);
