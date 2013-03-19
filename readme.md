@@ -107,15 +107,18 @@ You can create your own template for your site by modifiying the existing tempat
 - article.php: a single article page template
 - error.php: for handling 404 and other errors
 
+There is a fourth template page that is only required if you want to use the most recent article on the frontpage (instead of the archive listing). The template is `frontpage.php`. To use this feature, set `frontasarticle` to true in the site/config/config.php file.
+
 ### Checking Current Page Template
 
 You may find it useful to know what page template is being called by the system. You can check this using:
 
     <?php $template -> template; ?>
 
-There are current four possible templates:
+There are currently five possible templates:
 
 - index
+- frontpage (only available when using `frontasarticle` config option)
 - article
 - search (will return as search, even if the template doesn't exist and it is falling back to index)
 - error
@@ -140,6 +143,14 @@ Milk CMS will only create/reserve one field title, that being *permalink*. A per
 
 Milk CMS uses a simple loop in order to iterate through the articles on the archive template. The loop looks like this:
 
+    <?php foreach ($articles as $article) :
+        // Your article code
+    endforeach; ?>
+
+It is also possible to get a custom number of recent posts. Once the array of articles is retrieved, you can use the same code as above to loop through the articles:
+
+    $articles = articles::getXArticles($num_articles);
+    
     <?php foreach ($articles as $article) :
         // Your article code
     endforeach; ?>

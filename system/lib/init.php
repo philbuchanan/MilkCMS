@@ -14,12 +14,31 @@ class app {
 		
 		if (empty($url)) {
 		
-			self::loadIndex();
+			if (c::get('frontasarticle')) {
+			
+				$articles = files::getArticles(0, 0);
+				$url = str_replace(c::get('home'), '', $articles[0] -> permalink);
+				$article = new article($url . '.txt');
+				
+				$template = new template();
+				require_once($template -> get('frontpage'));
+			
+			}
+			else {
+			
+				self::loadIndex();
+			
+			}
 		
 		}
 		else {
 		
-			if (strstr($url, 'page=')) {
+			if (strstr($url, 'archive')) {
+			
+				self::loadIndex();
+			
+			}
+			elseif (strstr($url, 'page=')) {
 				
 				$page = str_replace('page=', '', $url);
 				
