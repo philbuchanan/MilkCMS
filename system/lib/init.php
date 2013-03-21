@@ -19,6 +19,7 @@ class app {
 				$articles = files::getArticles(0, 0);
 				$url = str_replace(c::get('home'), '', $articles[0] -> permalink);
 				$article = new article($url . '.txt');
+				$articles = array($article);
 				
 				$template = new template();
 				require_once($template -> get('frontpage'));
@@ -73,6 +74,7 @@ class app {
 						
 						# Get the article
 						$article = new article($url . '.txt');
+						$articles = array($article);
 						
 						$template = new template();
 						require_once($template -> get('article'));

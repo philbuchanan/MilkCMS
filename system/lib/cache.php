@@ -42,6 +42,7 @@ class cache {
 		
 		# Get the article
 		$article = new article($filename . '.txt');
+		$articles = array($article);
 		
 		require_once(template::get('article'));
 		

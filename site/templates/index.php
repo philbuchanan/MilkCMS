@@ -1,10 +1,6 @@
-<?php 
-
-include('includes/header.php');
+<?php include('includes/header.php'); ?>
 	
-	foreach ($articles as $article) :
-		
-		?>
+	<?php foreach ($articles as $article) : ?>
 		
 		<section>
 			<h3><a href="<?php $article -> get('permalink'); ?>"><?php echo SmartyPants($article -> get('title', false)); ?></a></h3>
