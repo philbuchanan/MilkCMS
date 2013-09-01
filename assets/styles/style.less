@@ -1,7 +1,30 @@
 // Less Variables
-@text-color:   #444;
-@link-color:   #900;
-@light-grey:   #999;
+@textColor:      #444;
+@linkColor:      #de6868;
+@linkColorHover: @textColor;
+@lightGrey:      #ccc;
+
+// GRID
+// ----
+
+@columns: 12;
+@gutter:  3%;
+
+.mixin-span(@num) {
+	@singlecol: (100% - (@gutter * (@columns - 1))) / @columns;
+	width: (@singlecol * @num) + (@gutter * (@num - 1));
+}
+
+
+// TYPOGRAPHY
+// ----------
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700);
+@sansFontFamily:    'Source Sans Pro', sans-serif;
+
+@baseFontSize:      22px;
+@baseLineHeight:    28px;
+@baseFontFamily:    @sansFontFamily;
 
 
 /* RESET
@@ -24,7 +47,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 blockquote, q {quotes: none;}
-hr {display: block; height: 1px; border: 0; border-top: 1px solid @text-color; margin: 1em 0; padding: 0;}
+hr {display: block; height: 1px; border: 0; border-top: 1px solid @lightGrey; margin: 1em 0; padding: 0;}
 input, select {vertical-align: middle;}
 button, input, select, textarea {margin: 0;}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
@@ -34,31 +57,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
    ---------------------------------- */
 
 body {
+	color: @textColor;
+	font-family: @baseFontFamily;
+	font-size: @baseLineHeight;
+	line-height: @baseLineHeight;
 	margin: 0 auto;
-	font-family: Georgia, Palatino, serif;
-	color: @text-color;
-	line-height: 1;
-	max-width: 540px;
-	padding: 30px 30px 90px;
 }
 h1, h2, h3, h4 {
 	color: #111111;
-	font-weight: 400;
+	font-weight: 300;
 }
 h1, h2, h3, h4, h5, p {
 	margin-bottom: 24px;
 	padding: 0;
 }
 h1 {
-	font-family: Helvetica, Arial, sans-serif;
 	font-size: 20px;
-	font-weight: bold;
+	font-weight: 700;
 	a {
-		color: @text-color;
-		&:hover {
-			color: @link-color;
-			text-decoration: none;
-		}
+		color: @textColor;
+		&:hover {color: @linkColor;}
 	}
 }
 h2 {
@@ -68,17 +86,6 @@ h2 {
 h3 {font-size: 24px;}
 h4 {font-size: 21px;}
 h5 {font-size: 18px;}
-a {
-	color: @text-color;
-	margin: 0;
-	padding: 0;
-	vertical-align: baseline;
-	text-decoration: none;
-	&:hover {
-		color: @link-color;
-		text-decoration: underline;
-	}
-}
 ul, ol {
 	padding: 0;
 	margin: 0 0 24px 18px;
@@ -87,11 +94,9 @@ ul, ol {
 p, ul, ol {
 	font-size: 16px;
 	line-height: 24px;
-	max-width: 540px;
 }
 pre {
 	padding: 0px 24px;
-	max-width: 800px;
 	white-space: pre-wrap;
 	margin-bottom: 24px;
 }
@@ -113,72 +118,138 @@ blockquote {
 	max-width: 476px;
 	p {max-width: 460px;}
 }
-hr {
-	width: 540px;
-	text-align: left;
-	margin: 0 auto 0 0;
-	color: @light-grey;
-}
 em {font-style: italic;}
-strong {font-weight: bold;}
+strong {font-weight: 700;}
+img {
+	vertical-align: middle;
+	max-width: 100%;
+	height: inherit;
+}
 
 
-/* GRID
+/* HEADERS & FOOTERS
    ---------------------------------- */
 
-.container {
-	width: 540px;
-	margin: 0 auto;
-	section {
-		margin-top: 62px;
-		overflow: visible;
-		article {
-			float: right;
-			width: 540px;
-		}
-	}
+header {
+	margin: 50px 0 30px;
+	border-bottom: 1px solid @lightGrey;
 }
-nav {
-	margin: 48px 0 65px;
-	.prev {float: left;}
-	.next {float: right;}
-	a:hover {color: #900;}
+footer {
+	border-top: 1px solid @lightGrey;
+	margin: 30px 0 15px;
+	padding: 6px 0 0;
+	p.copyright {font-size: 11px;}
+}
+
+
+/* GRID & LAYOUT
+   ---------------------------------- */
+
+* {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
+.container {
+	width: 92%;
+	max-width: 740px;
+	margin: 0 4%;
+}
+.row {margin-bottom: 35px;}
+.col {
+	display: block;
+	float: left;
+	width: 100%;
+	&:first-child {margin-left: 0 !important;}
+}
+
+// Fixes
+.row:after,
+.col:after {
+	clear: both;
+	display: block;
+	content: "";
+	height: 0;
+	visibility: hidden;
+}
+.clear {clear: both;}
+
+// Responsive Grid
+@media (min-width: 768px) {
+	.col {margin-left: @gutter;}
+	.large-1 {.mixin-span(1);}
+	.large-2 {.mixin-span(2);}
+	.large-3 {.mixin-span(3);}
+	.large-4 {.mixin-span(4);}
+	.large-5 {.mixin-span(5);}
+	.large-6 {.mixin-span(6);}
+	.large-7 {.mixin-span(7);}
+	.large-8 {.mixin-span(8);}
+	.large-9 {.mixin-span(9);}
+	.large-10 {.mixin-span(10);}
+	.large-11 {.mixin-span(11);}
+	.large-12 {width: 100%;}
+}
+
+@media (min-width: 1000px) {
+	.container {margin: 0 auto;}
 }
 
 
 /* SEARCH FORM
    ---------------------------------- */
 
-h2.search-title {margin-bottom: 15px;}
+h2.search-title {
+	font-size: 18px;
+	margin-bottom: 15px;
+}
 form {
-	margin-bottom: 50px;
-	overflow: auto;
-	label {
-		display: block;
-		font-family: Helvetica, Arial, sans-serif;
-		font-weight: bold;
-		margin-bottom: 8px;
-	}
-	input {
-		float: left;
-		display: block;
-		font-family: Helvetica, Arial, sans-serif;
-		font-size: 16px;
-		width: 300px;
-		padding: 5px 5px 4px;
-		border: 1px solid @light-grey;
-		border-right: none;
-		&[type=submit] {
-			color: #fff;
-			background: @light-grey;
-			font-size: 13px;
-			padding: 6px 10px;
-			width: inherit;
-			cursor: pointer;
-			&:hover {
-				background: @link-color;
-				border-color: @link-color;
-			}
+	margin-bottom: 30px;
+	label {display: block;}
+	input[type="text"] {
+		color: @textColor;
+		background: #fff;
+		font-family: @sansFontFamily;
+		font-size: @baseFontSize;
+		line-height: @baseLineHeight;
+		border: 1px solid @lightGrey;
+		width: 100%;
+		padding: 5px 7px;
+		-webkit-appearance: none;
+		-webkit-border-radius: 0;
+		-webkit-transition: border-color 0.3s ease;
+		   -moz-transition: border-color 0.3s ease;
+		        transition: border-color 0.3s ease;
+		&:focus {
+			border-color: @linkColor;
+			outline: none;
 		}
 	}
+	input[type="submit"] {display: none;}
+}
+
+
+/* NAVIGATION
+   ---------------------------------- */
+
+nav {
+	font-size: 14px;
+	margin: 48px 0 65px;
+	.prev {float: left;}
+	.next {float: right;}
+}
+
+
+/* LINKS
+   ---------------------------------- */
+
+a {
+	color: @linkColor;
+	vertical-align: baseline;
+	text-decoration: none;
+	-webkit-transition: color 0.3s ease;
+	   -moz-transition: color 0.3s ease;
+	        transition: color 0.3s ease;
+	&:hover {color: @linkColorHover;}
 }

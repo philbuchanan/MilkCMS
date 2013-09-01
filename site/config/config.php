@@ -27,25 +27,7 @@ of your browser.
 
 */
 
-c::set('title', 'Site Title');
-
-
-
-/*
----------------------------------------
-Front Page Display
----------------------------------------
-
-Set this to true if you want to display the most
-recent article on the homepage instead of the full
-archive listing.
-
-You must include an frontpage.php file in your
-templates directory to use this option.
-
-*/
-
-c::set('frontasarticle', false);
+c::set('title', 'MilkCMS');
 
 
 

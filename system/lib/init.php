@@ -14,33 +14,13 @@ class app {
 		
 		if (empty($url)) {
 		
-			if (c::get('frontasarticle')) {
-			
-				$articles = files::getArticles(0, 0);
-				$url = str_replace(c::get('home'), '', $articles[0] -> permalink);
-				$article = new article($url . '.txt');
-				$articles = array($article);
-				
-				$template = new template();
-				require_once($template -> get('frontpage'));
-			
-			}
-			else {
-			
-				self::loadIndex();
-			
-			}
+			self::loadIndex();
 		
 		}
 		else {
 		
-			if (strstr($url, 'archive')) {
+			if (strstr($url, 'page=')) {
 			
-				self::loadIndex();
-			
-			}
-			elseif (strstr($url, 'page=')) {
-				
 				$page = str_replace('page=', '', $url);
 				
 				if ($page == null) header::error(404);
@@ -48,30 +28,30 @@ class app {
 				
 			}
 			elseif (strstr($url, '?search=')) {
-				
+			
 				# Get search results
 				$search = new search($url);
 				$articles = $search -> getResults();
 				
 				$template = new template();
 				require_once($template -> get('search'));
-				
+			
 			}
 			else {
 			
 				if (file_exists(c::get('root.content') . '/' . $url . '.txt')) {
-					
+				
 					# Is caching turned on?
 					if (c::get('cacheexpire')) {
-						
+					
 						if (!is_dir(c::get('root.cache'))) cache::createCacheDir();
 						
 						# Check the cache status and get existing or create new cached file
 						cache::checkCache($url);
-						
+					
 					}
 					else {
-						
+					
 						# Get the article
 						$article = new article($url . '.txt');
 						$articles = array($article);
@@ -88,15 +68,15 @@ class app {
 					else header::error(404);
 				
 				}
-				
-			}
 			
+			}
+		
 		}
 	
 	}
 	
 	private static function loadIndex($page = 1) {
-		
+	
 		# Get page details
 		$pagination = new pagination($page);
 		

@@ -107,8 +107,6 @@ You can create your own template for your site by modifiying the existing tempat
 - article.php: a single article page template
 - error.php: for handling 404 and other errors
 
-There is a fourth template page that is only required if you want to use the most recent article on the frontpage (instead of the archive listing). The template is `frontpage.php`. To use this feature, set `frontasarticle` to true in the site/config/config.php file.
-
 ### Checking Current Page Template
 
 You may find it useful to know what page template is being called by the system. You can check this using:
@@ -118,7 +116,6 @@ You may find it useful to know what page template is being called by the system.
 There are currently five possible templates:
 
 - index
-- frontpage (only available when using `frontasarticle` config option)
 - article
 - search (will return as search, even if the template doesn't exist and it is falling back to index)
 - error

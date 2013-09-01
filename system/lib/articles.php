@@ -3,7 +3,7 @@
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class articles {
-	
+
 	public static function getXArticles($number) {
 	
 		$max = files::countArticles();
