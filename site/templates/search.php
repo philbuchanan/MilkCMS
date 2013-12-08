@@ -1,6 +1,6 @@
 <?php include('includes/header.php'); ?>
 
-	<h2 class="search-title"><?php if ($search -> results == 0) echo 'No'; else echo $search -> results; ?> search result<?php if ($search -> results > 1 || $search -> results == 0) echo 's'; ?> for &ldquo;<span class="search-string"><?php echo $search -> string; ?></span>&rdquo;</h2>
+	<h2 class="search-title"><?php if ($search -> results == 0) echo 'No'; elseif($search -> results == 1) echo 'One'; else echo $search -> results; ?> search result<?php if ($search -> results > 1 || $search -> results == 0) echo 's'; ?> for &ldquo;<span class="search-string"><?php echo $search -> string; ?></span>&rdquo;</h2>
 	
 	<form method="get" action="<?php echo c::get('home'); ?>">
 		<input type="text" name="search" id="search" value="<?php if (isset($search -> string)) echo $search -> string; ?>" placeholder="Search" onmouseup="this.select()" />
