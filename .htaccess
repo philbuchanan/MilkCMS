@@ -11,9 +11,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Redirect everything to index.php
 RewriteRule ^(.*) index.php [L]
 
-# Block content and files from being accessed directly
-RewriteRule ^content/(.*) ?e=301&uri=content [R=301,L]
-RewriteRule ^site/(.*) ?e=301&uri=site [R=301,L]
-RewriteRule ^system/(.*) ?e=301&uri=system [R=301,L]
-
 </IfModule>

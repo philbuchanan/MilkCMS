@@ -1,9 +1,7 @@
 <?php
 
-# Initial setup
+// Initial setup
 $root = dirname(__FILE__);
 
-# Load system
+// Load system
 require_once($root . '/system/system.php');
-
-?>
