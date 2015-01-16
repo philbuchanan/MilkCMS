@@ -13,6 +13,8 @@ class App {
 		echo '<pre>';
 		print_r($settings->get());
 		echo '</pre>';
+		
+		$article = new Article(array());
 	}
 
 }
