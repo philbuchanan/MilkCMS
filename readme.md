@@ -14,7 +14,7 @@ Features:
 
 ## Requirements
 
-The current the requirements of Milk CMS are:
+The current requirements of Milk CMS are:
 
 - PHP v5.4+
 - Apache server
