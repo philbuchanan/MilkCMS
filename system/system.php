@@ -26,10 +26,11 @@ $settings = new Settings();
 
 // Set defaults
 $settings->set(array(
-	'version'     => '1.0',
-	'root'        => $root,
-	'root.system' => $root . '/system',
-	'rewritebase' => '/'
+	'version'      => '1.0',
+	'root'         => $root,
+	'root.system'  => $root . '/system',
+	'root.content' => $root . '/content',
+	'rewritebase'  => '/'
 ));
 
 
@@ -37,6 +38,7 @@ $settings->set(array(
 // Load system classes
 require_once($root . '/system/lib/class.basic.php');
 require_once($root . '/system/lib/class.app.php');
+require_once($root . '/system/lib/class.files.php');
 require_once($root . '/system/lib/class.article.php');
 
 
