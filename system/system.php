@@ -26,12 +26,20 @@ $settings = new Settings();
 
 // Set defaults
 $settings->set(array(
-	'version'      => '1.0',
-	'root'         => $root,
-	'root.system'  => $root . '/system',
-	'root.content' => $root . '/content',
-	'rewritebase'  => '/'
+	'version'       => '1.0',
+	'root'          => $root,
+	'root.system'   => $root . '/system',
+	'root.site'     => $root . '/site',
+	'root.config'   => $root . '/site/config',
+	'root.template' => $root . '/site/template',
+	'root.content'  => $root . '/content',
+	'rewritebase'   => '/'
 ));
+
+
+
+// Load config files
+$settings->load_config();
 
 
 

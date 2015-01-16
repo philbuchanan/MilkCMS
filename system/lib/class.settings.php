@@ -47,5 +47,22 @@ class Settings {
 		
 		return $this->settings[$key];
 	}
+	
+	
+	
+	/**
+	 * Load the config file
+	 */
+	public function load_config() {
+		$default_config = $this->get('root.config') . '/config.php';
+		$server_config  = $this->get('root.config') . '/config.' . $_SERVER['SERVER_NAME'] . '.php';
+		
+		require_once($default_config);
+		
+		// Optionally load a server sepcific config file
+		if (file_exists($server_config)) {
+			require_once($server_config);
+		}
+	}
 
 }
