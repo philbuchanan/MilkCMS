@@ -10,11 +10,11 @@ class App extends Basic {
 	function __construct() {
 		parent::__construct();
 		
-		echo '<pre>';
-		print_r($this->settings->get());
-		echo '</pre>';
+		$files = new Files();
 		
-		$article = new Article(array());
+		echo '<pre>';
+		print_r ($files);
+		echo '</pre>';
 	}
 
 }

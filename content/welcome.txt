@@ -1,0 +1,5 @@
+Title: Welcome to MilkCMS
+----
+Text:
+
+A lightweight file based CMS for writing.
