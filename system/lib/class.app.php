@@ -12,8 +12,10 @@ class App extends Basic {
 		
 		$files = new Files();
 		
+		$articles = $files->get_articles();
+		
 		echo '<pre>';
-		print_r ($files);
+		print_r ($articles);
 		echo '</pre>';
 	}
 
