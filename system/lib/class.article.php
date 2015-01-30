@@ -39,6 +39,8 @@ class Article extends Basic {
 		$this->file_content = $file_content;
 		
 		$this->set_permalink();
+		$this->set_data();
+		$this->set_date();
 	}
 	
 	
@@ -49,9 +51,11 @@ class Article extends Basic {
 	 * @param string $key The article key to retrieve
 	 * @param bool $echo Whether to echo the value
 	 *
-	 * return false|value
+	 * return bool|string
 	 */
 	public function get($key, $echo = true) {
+		$key = strtolower($key);
+		
 		// If no key is set, return early
 		if (!array_key_exists($key, $this->data)) {
 			return false;
@@ -101,6 +105,41 @@ class Article extends Basic {
 		$url = $this->settings->get('rewritebase') . $permalink;
 		
 		$this->set('permalink', $url);
+	}
+	
+	
+	
+	/**
+	 * Setup the articles data array based on file contents
+	 *
+	 * return void
+	 */
+	private function set_data() {
+		$data = explode('----', $this->file_content);
+		
+		foreach ($data as $items) {
+			$details = explode(':', $items, 2);
+			
+			$key   = trim(strtolower($details[0]));
+			$value = trim($details[1]);
+			
+			$this->set($key, $value);
+		}
+	}
+	
+	
+	
+	/**
+	 * Formats the article date based on config file setting
+	 *
+	 * return void
+	 */
+	private function set_date() {
+		$article_date = $this->get('date', false);
+		
+		if ($article_date) {
+			$this->set('date', strtotime($article_date));
+		}
 	}
 
 }

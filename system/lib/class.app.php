@@ -27,15 +27,16 @@ class App extends Basic {
 		// Get the requested URL
 		$this->url = $this->get_requested_url();
 		
-		$this->files = new Files();
-		
+		// Set up the template
 		$template = new Template($this->url);
+		
+		$this->files = new Files();
 		
 		// Get the array of articles for the loop
 		$articles = $this->files->get_articles();
 		
 		// Last step is to load the template
-		require_once($template->path);
+		//require_once($template->path);
 	}
 	
 	

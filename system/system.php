@@ -46,8 +46,8 @@ $settings->load_config();
 // Load system classes
 require_once($root . '/system/lib/class.basic.php');
 require_once($root . '/system/lib/class.app.php');
-require_once($root . '/system/lib/class.files.php');
 require_once($root . '/system/lib/class.template.php');
+require_once($root . '/system/lib/class.files.php');
 require_once($root . '/system/lib/class.article.php');
 
 

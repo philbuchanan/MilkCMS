@@ -28,10 +28,10 @@ class Template extends Basic {
 		parent::__construct();
 		
 		if (empty($url)) {
-			$this->set('index');
+			$this->set_template('index');
 		}
 		else {
-			$this->set('article');
+			$this->set_template('article');
 		}
 	}
 	
@@ -44,7 +44,7 @@ class Template extends Basic {
 	 *
 	 * return void
 	 */
-	private function set($template = 'index') {
+	private function set_template($template = 'index') {
 		$path = $this->get_path($template);
 		
 		if (!is_file($path)) {
