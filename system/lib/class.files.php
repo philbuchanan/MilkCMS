@@ -49,7 +49,7 @@ class Files extends Basic {
 	
 	/**
 	 * List all files in a directory
-	 * Returned file list is sorted by date in descending order.
+	 * Returned file list is sorted by number in descending order.
 	 *
 	 * @param string $dir The directory to load
 	 *
@@ -63,17 +63,11 @@ class Files extends Basic {
 		
 		$skip = array('.', '..', '.DS_Store', 'images');
 		
-		$files = array();
-		foreach (scandir($dir) as $file) {
-			if (in_array($file, $skip)) {
-				continue;
-			}
-			
-			$files[$file] = filectime($dir . '/' . $file);
-		}
+		// Create array	of filenames
+		$files = array_diff(scandir($dir), $skip);
 		
-		arsort($files);
-		$files = array_keys($files);
+		natsort($files);
+		$files = array_reverse($files);
 		
 		return ($files) ? $files : false;
 	}
@@ -103,11 +97,10 @@ class Files extends Basic {
 		while ($i < $count) {
 			$file = $this->directory . '/' . $this->files_list[$i];
 			
-			$articles[] = new Article(array(
-				'file'     => $this->files_list[$i],
-				'modified' => filectime($file),
-				'content'  => $this->get_file_contents($file)
-			));
+			$filename = $this->files_list[$i];
+			$file_content = $this->get_file_content($file);
+			
+			$articles[] = new Article($filename, $file_content);
 			
 			$i++;
 		}
@@ -123,13 +116,13 @@ class Files extends Basic {
 	
 	
 	/**
-	 * Returns a files contents
+	 * Returns a files content
 	 *
 	 * @param string $path The file path
 	 *
 	 * return string The file contents as a string, else false
 	 */
-	private function get_file_contents($path) {
+	private function get_file_content($path) {
 		// If no file path is set or file doesn't exist, return early
 		if (!$path || !file_exists($path)) {
 			return false;

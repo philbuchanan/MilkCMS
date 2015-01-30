@@ -1,5 +1,7 @@
 Title: Welcome to MilkCMS
 ----
+Date: 2015/01/01
+----
 Text:
 
 A lightweight file based CMS for writing.

@@ -2,20 +2,43 @@
 
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
-class Article {
+class Article extends Basic {
 
 	/**
-	 * The articles data array
+	 * Holds the articles filename
 	 */
-	private $properties = array();
+	private $filename;
+	
+	
+	
+	/**
+	 * Holds the article files raw (unparsed) content
+	 */
+	private $file_content;
+	
+	
+	
+	/**
+	 * The articles data array
+	 * All data in this array will be accessible in the templates
+	 */
+	private $data = array();
 	
 	
 	
 	/**
 	 * Set up the article
+	 *
+	 * @param string $filename The name of the file
+	 * @param string $file_content The raw file content
 	 */
-	function __construct($data) {
-		$this->set($data);
+	function __construct($filename, $file_content) {
+		parent::__construct();
+		
+		$this->filename = $filename;
+		$this->file_content = $file_content;
+		
+		$this->set_permalink();
 	}
 	
 	
@@ -26,19 +49,19 @@ class Article {
 	 * @param string $key The article key to retrieve
 	 * @param bool $echo Whether to echo the value
 	 *
-	 * return void|value
+	 * return false|value
 	 */
 	public function get($key, $echo = true) {
 		// If no key is set, return early
-		if (!array_key_exists($key, $this->properties)) {
+		if (!array_key_exists($key, $this->data)) {
 			return false;
 		}
 		
 		if ($echo) {
-			echo $this->properties[$key];
+			echo $this->data[$key];
 		}
 		else {
-			return $this->properties[$key];
+			return $this->data[$key];
 		}
 	}
 	
@@ -56,11 +79,28 @@ class Article {
 	private function set($key, $value = null) {
 		if (is_array($key)) {
 			// set all new values
-			$this->properties = array_merge($this->properties, $key);
+			$this->data = array_merge($this->data, $key);
 		}
 		else {
-			$this->properties[$key] = $value;
+			$this->data[$key] = $value;
 		}
+	}
+	
+	
+	
+	/**
+	 * Set the articles permalink based on filename
+	 *
+	 * return void
+	 */
+	private function set_permalink() {
+		$parts = explode('.', $this->filename);
+		$permalink = preg_replace('/^\d+\-/', '', $parts[0]);
+		
+		// Add the rewrite base to the permalink (root relative URL)
+		$url = $this->settings->get('rewritebase') . $permalink;
+		
+		$this->set('permalink', $url);
 	}
 
 }

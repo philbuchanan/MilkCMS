@@ -14,7 +14,26 @@ class Template extends Basic {
 	/**
 	 * Holds the template file path
 	 */
-	private $path;
+	public $path;
+	
+	
+	
+	/**
+	 * Set up the template
+	 * Sets up the template object based on the current requested URL.
+	 *
+	 * @param string $url The cureent requested URL
+	 */
+	function __construct($url) {
+		parent::__construct();
+		
+		if (empty($url)) {
+			$this->set('index');
+		}
+		else {
+			$this->set('article');
+		}
+	}
 	
 	
 	
@@ -25,7 +44,7 @@ class Template extends Basic {
 	 *
 	 * return void
 	 */
-	public function set($template = 'index') {
+	private function set($template = 'index') {
 		$path = $this->get_path($template);
 		
 		if (!is_file($path)) {

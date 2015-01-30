@@ -5,9 +5,16 @@ if (!defined('ACCESS')) die('Direct access is not allowed');
 class App extends Basic {
 
 	/**
-	 * Holds the template object
+	 * The currently requested URL
 	 */
-	public $template;
+	private $url;
+	
+	
+	
+	/**
+	 * Holds the files object
+	 */
+	private $files;
 	
 	
 	
@@ -17,17 +24,18 @@ class App extends Basic {
 	function __construct() {
 		parent::__construct();
 		
-		$files = new Files();
+		// Get the requested URL
+		$this->url = $this->get_requested_url();
 		
-		$articles = $files->get_articles();
+		$this->files = new Files();
 		
-		$url = $this->get_requested_url();
+		$template = new Template($this->url);
 		
-		$this->template = $this->get_template($url);
+		// Get the array of articles for the loop
+		$articles = $this->files->get_articles();
 		
-		echo '<pre>';
-		print_r($this->template);
-		echo '</pre>';
+		// Last step is to load the template
+		require_once($template->path);
 	}
 	
 	
@@ -42,29 +50,6 @@ class App extends Basic {
 		$request_uri = $_SERVER['REQUEST_URI'];
 		
 		return str_replace($rewritebase, '', $request_uri);
-	}
-	
-	
-	
-	/**
-	 * Get Template
-	 * Gets the template object based on the current requested URL.
-	 *
-	 * @param string $url The cureent requested URL
-	 *
-	 * return object The template object
-	 */
-	private function get_template($url) {
-		$template = new Template();
-		
-		if (empty($url)) {
-			$template->set('index');
-		}
-		else {
-			$template->set('article');
-		}
-		
-		return $template;
 	}
 
 }
