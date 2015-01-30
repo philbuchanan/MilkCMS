@@ -12,13 +12,6 @@ class App extends Basic {
 	
 	
 	/**
-	 * Holds the files object
-	 */
-	private $files;
-	
-	
-	
-	/**
 	 * Set up the application
 	 */
 	function __construct() {
@@ -30,13 +23,11 @@ class App extends Basic {
 		// Set up the template
 		$template = new Template($this->url);
 		
-		$this->files = new Files();
-		
 		// Get the array of articles for the loop
 		$articles = $this->files->get_articles();
 		
 		// Last step is to load the template
-		//require_once($template->path);
+		require_once($template->path);
 	}
 	
 	

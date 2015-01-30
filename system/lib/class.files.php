@@ -2,7 +2,7 @@
 
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
-class Files extends Basic {
+class Files {
 
 	/**
 	 * Holds the directory string
@@ -30,19 +30,10 @@ class Files extends Basic {
 	 * Loads and makes $settings object available from parent class. Then loads
 	 * the content directory.
 	 */
-	function __construct($dir = null) {
-		parent::__construct();
-		
-		if (!$dir || !is_dir($dir)) {
-			$this->directory = $this->settings->get('root.content');
-		}
-		else {
-			$this->directory = $dir;
-		}
-		
+	function __construct($dir) {
+		$this->directory  = $dir;
 		$this->files_list = $this->list_dir();
-		
-		$this->count = count($this->files_list);
+		$this->count      = count($this->files_list);
 	}
 	
 	
@@ -55,16 +46,11 @@ class Files extends Basic {
 	 *
 	 * return array An array of files
 	 */
-	private function list_dir($dir = null) {
-		// If no directory is set, use default directory
-		if (!$dir) {
-			$dir = $this->directory;
-		}
-		
+	private function list_dir() {
 		$skip = array('.', '..', '.DS_Store', 'images');
 		
 		// Create array	of filenames
-		$files = array_diff(scandir($dir), $skip);
+		$files = array_diff(scandir($this->directory), $skip);
 		
 		natsort($files);
 		$files = array_reverse($files);
