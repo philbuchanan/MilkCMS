@@ -2,70 +2,41 @@
 
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
-class Template extends Basic {
+class Template {
 
-	/**
-	 * Holds the template name
-	 */
-	private $template;
+	public $content = array();
+	
+	private $template_path;
 	
 	
 	
 	/**
-	 * Holds the template file path
-	 */
-	public $path;
-	
-	
-	
-	/**
-	 * Set up the template
-	 * Sets up the template object based on the current requested URL.
+	 * Sets up the template
 	 *
-	 * @param string $url The cureent requested URL
+	 * @param string $template_name The name of the template file
 	 */
-	function __construct($url) {
-		parent::__construct();
-		
-		if (empty($url)) {
-			$this->set_template('index');
-		}
-		else {
-			$this->set_template('article');
-		}
-	}
-	
-	
-	
-	/**
-	 * Set the template
-	 *
-	 * @param string $template The template name to load
-	 *
-	 * return void
-	 */
-	private function set_template($template = 'index') {
-		$path = $this->get_path($template);
+	function __construct($template_name) {
+		$path = Settings::get('root.template') . "/$template_name.php";
 		
 		if (!is_file($path)) {
 			die('Template file could not be found');
 		}
 		
-		$this->template = $template;
-		$this->path     = $path;
+		$this->template_path = $path;
 	}
 	
 	
 	
 	/**
-	 * Get template file path
-	 *
-	 * @param string $template The name of the template to retrieve
-	 *
-	 * return string The path of the template
+	 * Output the template HTML
 	 */
-	private function get_path($template) {
-		return $this->settings->get('root.template') . "/$template.php";
+	public function outputHTML() {
+		ob_start();
+		$content = $this->content;
+		include($this->template_path);
+		$contents = ob_get_contents();
+		ob_end_clean();
+		
+		return $contents;
 	}
-
 }

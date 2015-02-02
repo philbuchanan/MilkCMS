@@ -26,13 +26,11 @@ class App {
 		echo '</pre>';
 		
 		// Set up the template
-		//$template = new Template($this->url);
+		$template = new Template('index');
 		
-		// Get the array of articles for the loop
-		//$articles = $this->files->get_articles();
-		
-		// Last step is to load the template
-		//require_once($template->path);
+		echo '<pre>';
+		print_r($template);
+		echo '</pre>';
 	}
 	
 	
