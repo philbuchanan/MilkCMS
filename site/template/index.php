@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 	<head>
 		<meta charset="utf-8">
-		<title>MilkCMS</title>
+		<title><?php echo Settings::get('site_title'); ?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
+		<header>
+			<p class="site-title"><?php echo Settings::get('site_title'); ?></p>
+			<p class="site-description"><?php echo Settings::get('site_description'); ?></p>
+		</header>
 		<main>
-			<?php foreach($articles as $article) : ?>
-				<article>
+			<?php foreach($content['posts'] as $post) : ?>
+				<article class="post">
 					<header>
-						<p class="article-title"><a href="<?php $article->get('permalink'); ?>"><?php $article->get('title'); ?></a></p>
-						<p class="article-date"><?php echo date('l, F j, Y', $article->get('date', false)); ?></p>
+						<h1 class="post-title">
+							<?php if (count($content['posts']) > 1) {
+								printf('<a href="%s">%s</a>',
+									$post['permalink'],
+									$post['title']
+								);
+							}
+							else {
+								echo $post['title'];
+							} ?>
+						</h1>
+						<p class="post-date"><?php echo date('l, F j, Y', $post['timestamp']); ?></p>
 					</header>
-					<div class="article-content">
-						<?php $article->get('content'); ?>
+					<div class="post-content">
+						<?php echo $post['body']; ?>
 					</div>
 				</article>
 			<?php endforeach; ?>

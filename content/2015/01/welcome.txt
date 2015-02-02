@@ -1,0 +1,11 @@
+This is the post title
+======================
+Date: 2015/01/01 12:00:00pm
+
+This is the post body, in **Markdown**.
+
+It will continue for the rest of the file. See, the top is a lot like an HTTP response with headers, but with a title and a row of any number of equals signs ("===") as the first two headers.
+
+You can add arbitrary fields, formatted like HTTP headers.
+
+You can then customize the templates to respond to them.
