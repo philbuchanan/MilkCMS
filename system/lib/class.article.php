@@ -2,143 +2,66 @@
 
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
-class Article extends Basic {
+class Article {
 
-	/**
-	 * Holds the articles filename
-	 */
-	private $filename;
+	private $source_filename;
 	
+	public $title = '';
+	public $slug = '';
+	public $headers = array();
+	public $body = '';
 	
-	
-	/**
-	 * Holds the article files raw (unparsed) content
-	 */
-	private $file_content;
-	
-	
-	
-	/**
-	 * The articles data array
-	 * All data in this array will be accessible in the templates
-	 */
-	private $data = array();
+	public $timestamp;
+	public $year;
+	public $month;
+	public $day;
 	
 	
 	
 	/**
 	 * Set up the article
 	 *
-	 * @param string $filename The name of the file
-	 * @param string $file_content The raw file content
+	 * @param string $source_filename
 	 */
-	function __construct($filename, $file_content) {
-		parent::__construct();
+	function __construct($source_filename) {
+		$this->source_filename = $source_filename;
 		
-		$this->filename = $filename;
-		$this->file_content = $file_content;
+		// Set the slug based on the filename
+		$filename = basename($source_filename);
+		$filename_parts = explode('.', $filename);
+		$this->slug = $filename_parts[0];
 		
-		$this->set_permalink();
-		$this->set_data();
-		$this->set_date();
-	}
-	
-	
-	
-	/**
-	 * Get an article value by key
-	 *
-	 * @param string $key The article key to retrieve
-	 * @param bool $echo Whether to echo the value
-	 *
-	 * return bool|string
-	 */
-	public function get($key, $echo = true) {
-		$key = strtolower($key);
+		// Get file content parts
+		$segments = explode("\n\n", trim(file_get_contents($source_filename)), 2);
+		$headers  = explode("\n", $segments[0]);
 		
-		// If no key is set, return early
-		if (!array_key_exists($key, $this->data)) {
-			return false;
-		}
+		$this->title = $headers[0];
 		
-		if ($echo) {
-			echo $this->data[$key];
-		}
-		else {
-			return $this->data[$key];
-		}
-	}
-	
-	
-	
-	/**
-	 * Sets an article properties value by key
-	 * Accepts an array for setting multiple keys at once.
-	 *
-	 * @param string $key The setting key to set
-	 * @param any $value The value of the setting setting
-	 *
-	 * return void
-	 */
-	private function set($key, $value = null) {
-		if (is_array($key)) {
-			// set all new values
-			$this->data = array_merge($this->data, $key);
-		}
-		else {
-			$this->data[$key] = $value;
-		}
-	}
-	
-	
-	
-	/**
-	 * Set the articles permalink based on filename
-	 *
-	 * return void
-	 */
-	private function set_permalink() {
-		$parts = explode('.', $this->filename);
-		$permalink = preg_replace('/^\d+\-/', '', $parts[0]);
-		
-		// Add the rewrite base to the permalink (root relative URL)
-		$url = $this->settings->get('rewritebase') . $permalink;
-		
-		$this->set('permalink', $url);
-	}
-	
-	
-	
-	/**
-	 * Setup the articles data array based on file contents
-	 *
-	 * return void
-	 */
-	private function set_data() {
-		$data = explode('----', $this->file_content);
-		
-		foreach ($data as $items) {
-			$details = explode(':', $items, 2);
+		// Parse the headers
+		foreach ($headers as $header) {
+			$fields = explode(':', $header, 2);
 			
-			$key   = trim(strtolower($details[0]));
-			$value = trim($details[1]);
-			
-			$this->set($key, $value);
+			if (count($fields) > 1) {
+				$field_name  = strtolower($fields[0]);
+				$field_value = trim($fields[1]);
+				
+				$this->headers[$field_name] = $field_value;
+			}
 		}
-	}
-	
-	
-	
-	/**
-	 * Formats the article date based on config file setting
-	 *
-	 * return void
-	 */
-	private function set_date() {
-		$article_date = $this->get('date', false);
 		
-		if ($article_date) {
-			$this->set('date', strtotime($article_date));
+		array_shift($segments);
+		
+		$this->body = isset($segments[0]) ? $segments[0] : '';
+		
+		// Set article publish date
+		if (array_key_exists('date', $this->headers)) {
+			$date = $this->headers['date'];
+			
+			$this->timestamp = date('U', strtotime($date));
+			
+			$this->year  = intval(date('Y', $this->timestamp));
+			$this->month = intval(date('m', $this->timestamp));
+			$this->day   = intval(date('d', $this->timestamp));
 		}
 	}
 
