@@ -12,7 +12,7 @@ class Settings {
 	 * Sets a setting value by key
 	 * Accepts an array for setting multiple keys at once.
 	 *
-	 * @param string $key The setting key to set
+	 * @param string|array $key The key to set
 	 * @param any $value The value of the setting setting
 	 *
 	 * return void

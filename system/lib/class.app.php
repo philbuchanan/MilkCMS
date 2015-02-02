@@ -15,6 +15,8 @@ class App {
 		// The requested path
 		$request = rtrim(str_replace($rewritebase, '', $request_uri), '/');
 		
+		$files = new Files();
+		
 		// Direct the request
 		if (empty($request)) {
 			$this->write_page($content, 'index');
