@@ -4,9 +4,6 @@ if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class Settings {
 
-	/**
-	 * The settings array
-	 */
 	static $settings = array();
 	
 	
@@ -58,8 +55,8 @@ class Settings {
 	 * E.g. config.localhost.php will load a custom config file for localhost
 	 */
 	static function load_configs() {
-		$default_config = self::get('root.config') . '/config.php';
-		$server_config  = self::get('root.config') . '/config.' . $_SERVER['SERVER_NAME'] . '.php';
+		$default_config = self::get('config_dir') . '/config.php';
+		$server_config  = self::get('config_dir') . '/config.' . $_SERVER['SERVER_NAME'] . '.php';
 		
 		require_once($default_config);
 		

@@ -6,10 +6,7 @@ class Template {
 
 	private $template_path;
 	
-	public $template_name = 'index';
-	public $is_single = false;
-	
-	public $posts = array();
+	public $content = array();
 	
 	
 	
@@ -19,12 +16,16 @@ class Template {
 	 * @param string $template_name The name of the template file
 	 */
 	function __construct($template_name) {
-		$this->template_name = $template_name;
+		$path = Settings::get('template_dir') . "/$template_name.php";
 		
-		$path = Settings::get('root.template') . "/$template_name.php";
-		
+		// If specific template file doesn't exist, default to index
 		if (!is_file($path)) {
-			die('Template file could not be found');
+			$path = Settings::get('template_dir') . "/index.php";
+		}
+		
+		// If no template can be found, kill app
+		if (!is_file($path)) {
+			throw new Exception('Template file could not be found');
 		}
 		
 		$this->template_path = $path;
@@ -39,11 +40,12 @@ class Template {
 	 */
 	public function outputHTML() {
 		ob_start();
-		$posts = $this->posts;
+		$content = $this->content;
 		include($this->template_path);
 		$contents = ob_get_contents();
 		ob_end_clean();
 		
 		return $contents;
 	}
+
 }

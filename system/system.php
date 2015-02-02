@@ -21,15 +21,16 @@ require_once($root . '/system/lib/class.settings.php');
 
 // Set default settings
 Settings::set(array(
-	'version'       => '1.0',
-	'root'          => $root,
-	'root.system'   => $root . '/system',
-	'root.site'     => $root . '/site',
-	'root.config'   => $root . '/site/config',
-	'root.template' => $root . '/site/template',
-	'root.content'  => $root . '/content',
-	'domain'        => 'http://' . $_SERVER['HTTP_HOST'],
-	'rewritebase'   => '/'
+	'version'        => '1.0',
+	'root'           => $root,
+	'system_dir'     => $root . '/system',
+	'site_dir'       => $root . '/site',
+	'config_dir'     => $root . '/site/config',
+	'template_dir'   => $root . '/site/template',
+	'content_dir'    => $root . '/content',
+	'domain'         => 'http://' . $_SERVER['HTTP_HOST'],
+	'rewritebase'    => '/',
+	'post_extension' => '.txt'
 ));
 
 // Load config files
