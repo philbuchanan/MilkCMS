@@ -9,11 +9,21 @@
 			<?php foreach($articles as $article) : ?>
 				<article>
 					<header>
-						<p class="article-title"><a href="<?php $article->get('permalink'); ?>"><?php $article->get('title'); ?></a></p>
-						<p class="article-date"><?php echo date('l, F j, Y', $article->get('date', false)); ?></p>
+						<h1 class="article-title">
+							<?php if ($this->is_single) {
+								printf('<a href="%s">%s</a>',
+									$article['permalink'],
+									$article['title']
+								);
+							}
+							else {
+								echo $article['title'];
+							} ?>
+						</h1>
+						<p class="article-date"><?php echo date('l, F j, Y', $article['timestamp']); ?></p>
 					</header>
 					<div class="article-content">
-						<?php $article->get('content'); ?>
+						<?php echo $article['body']; ?>
 					</div>
 				</article>
 			<?php endforeach; ?>

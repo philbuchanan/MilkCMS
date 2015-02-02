@@ -64,5 +64,14 @@ class Article {
 			$this->day   = intval(date('d', $this->timestamp));
 		}
 	}
+	
+	
+	
+	/**
+	 * Run the article body through any parsers
+	 */
+	public function rendered_body() {
+		return SmartyPants(Markdown($this->body));
+	}
 
 }

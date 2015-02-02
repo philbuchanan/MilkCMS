@@ -34,6 +34,9 @@ Settings::set(array(
 // Load config files
 Settings::load_configs();
 
+// Set the base uri
+Settings::set('base_uri', Settings::get('rewritebase'));
+
 
 
 // Load system classes
