@@ -62,7 +62,7 @@ class App {
 			$template->posts[] = array(
 				'title'     => $post->encode_string($post->title),
 				'body'      => $post->rendered_body(),
-				'permalink' => Settings::get('base_uri') . '/' . $post->slug,
+				'permalink' => Settings::get('base_uri') . $post->slug,
 				'timestamp' => $post->timestamp,
 				'headers'   => $post->headers
 			);

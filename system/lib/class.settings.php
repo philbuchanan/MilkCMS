@@ -53,7 +53,7 @@ class Settings {
 	/**
 	 * Load the configuration files
 	 * Loads the default config file as well as an optional, additional config
-	 * file based on the server name.
+	 * file based on the server name (for setting server specifc configuations).
 	 *
 	 * E.g. config.localhost.php will load a custom config file for localhost
 	 */

@@ -34,6 +34,8 @@ class Template {
 	
 	/**
 	 * Output the template HTML
+	 *
+	 * return string The rendered template content
 	 */
 	public function outputHTML() {
 		ob_start();

@@ -28,14 +28,15 @@ Settings::set(array(
 	'root.config'   => $root . '/site/config',
 	'root.template' => $root . '/site/template',
 	'root.content'  => $root . '/content',
+	'domain'        => 'http://' . $_SERVER['HTTP_HOST'],
 	'rewritebase'   => '/'
 ));
 
 // Load config files
 Settings::load_configs();
 
-// Set the base uri
-Settings::set('base_uri', Settings::get('rewritebase'));
+// Set the base URI
+Settings::set('base_uri', Settings::get('domain') . Settings::get('rewritebase'));
 
 
 

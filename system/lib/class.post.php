@@ -92,7 +92,7 @@ class Post {
 	 * return string
 	 */
 	public function encode_string($string) {
-		return html_entity_decode(SmartyPants($string), ENT_QUOTES, 'UTF-8'),
+		return html_entity_decode(SmartyPants($string), ENT_QUOTES, 'UTF-8');
 	}
 
 }
