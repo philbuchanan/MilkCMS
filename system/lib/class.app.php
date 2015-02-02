@@ -2,7 +2,7 @@
 
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
-class App extends Basic {
+class App {
 
 	/**
 	 * The currently requested URL
@@ -15,19 +15,24 @@ class App extends Basic {
 	 * Set up the application
 	 */
 	function __construct() {
-		parent::__construct();
 		
 		// Get the requested URL
 		$this->url = $this->get_requested_url();
 		
+		$article = new Article(Settings::get('root.content') . '/2015/01/welcome.txt');
+		
+		echo '<pre>';
+		print_r($article);
+		echo '</pre>';
+		
 		// Set up the template
-		$template = new Template($this->url);
+		//$template = new Template($this->url);
 		
 		// Get the array of articles for the loop
-		$articles = $this->files->get_articles();
+		//$articles = $this->files->get_articles();
 		
 		// Last step is to load the template
-		require_once($template->path);
+		//require_once($template->path);
 	}
 	
 	
@@ -38,7 +43,7 @@ class App extends Basic {
 	 * return array The requested path and template object
 	 */
 	private function get_requested_url() {
-		$rewritebase = $this->settings->get('rewritebase');
+		$rewritebase = Settings::get('rewritebase');
 		$request_uri = $_SERVER['REQUEST_URI'];
 		
 		return str_replace($rewritebase, '', $request_uri);

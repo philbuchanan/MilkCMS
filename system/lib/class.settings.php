@@ -7,7 +7,7 @@ class Settings {
 	/**
 	 * The settings array
 	 */
-	private $settings = array();
+	static $settings = array();
 	
 	
 	
@@ -20,13 +20,13 @@ class Settings {
 	 *
 	 * return void
 	 */
-	public function set($key, $value = null) {
+	static function set($key, $value = null) {
 		if (is_array($key)) {
 			// set all new values
-			$this->settings = array_merge($this->settings, $key);
+			self::$settings = array_merge(self::$settings, $key);
 		}
 		else {
-			$this->settings[$key] = $value;
+			self::$settings[$key] = $value;
 		}
 	}
 	
@@ -39,23 +39,27 @@ class Settings {
 	 *
 	 * return array|string $value The value for the setting or all settings
 	 */
-	public function get($key = null) {
+	static function get($key = null) {
 		// If no key set, return all settings
 		if (empty($key)) {
-			return $this->settings;
+			return self::$settings;
 		}
 		
-		return $this->settings[$key];
+		return self::$settings[$key];
 	}
 	
 	
 	
 	/**
-	 * Load the config file
+	 * Load the configuration files
+	 * Loads the default config file as well as an optional, additional config
+	 * file based on the server name.
+	 *
+	 * E.g. config.localhost.php will load a custom config file for localhost
 	 */
-	public function load_config() {
-		$default_config = $this->get('root.config') . '/config.php';
-		$server_config  = $this->get('root.config') . '/config.' . $_SERVER['SERVER_NAME'] . '.php';
+	static function load_configs() {
+		$default_config = self::get('root.config') . '/config.php';
+		$server_config  = self::get('root.config') . '/config.' . $_SERVER['SERVER_NAME'] . '.php';
 		
 		require_once($default_config);
 		
