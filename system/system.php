@@ -41,6 +41,10 @@ require_once($root . '/system/lib/class.app.php');
 require_once($root . '/system/lib/class.article.php');
 require_once($root . '/system/lib/class.template.php');
 
+// Load parsers
+require_once($root . '/system/parsers/markdown.php');
+require_once($root . '/system/parsers/smartypants.php');
+
 
 
 // Load application
