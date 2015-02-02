@@ -60,10 +60,11 @@ class App {
 		// Create the posts content array
 		foreach ($posts as $post) {
 			$template->posts[] = array(
-				'title'     => html_entity_decode(SmartyPants($post->title), ENT_QUOTES, 'UTF-8'),
+				'title'     => $post->encode_string($post->title),
 				'body'      => $post->rendered_body(),
 				'permalink' => Settings::get('base_uri') . '/' . $post->slug,
-				'timestamp' => $post->timestamp
+				'timestamp' => $post->timestamp,
+				'headers'   => $post->headers
 			);
 		}
 		
@@ -71,11 +72,7 @@ class App {
 		$output_html = $template->outputHTML();
 		
 		// Display the page
-		//echo $output_html;
-		
-		echo '<pre>';
-		print_r($template);
-		echo '</pre>';
+		echo $output_html;
 	}
 
 }
