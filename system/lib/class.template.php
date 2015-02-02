@@ -9,7 +9,7 @@ class Template {
 	public $template_name = 'index';
 	public $is_single = false;
 	
-	public $articles = array();
+	public $posts = array();
 	
 	
 	
@@ -37,7 +37,7 @@ class Template {
 	 */
 	public function outputHTML() {
 		ob_start();
-		$articles = $this->articles;
+		$posts = $this->posts;
 		include($this->template_path);
 		$contents = ob_get_contents();
 		ob_end_clean();

@@ -6,24 +6,24 @@
 	</head>
 	<body>
 		<main>
-			<?php foreach($articles as $article) : ?>
-				<article>
+			<?php foreach($posts as $post) : ?>
+				<article class="post">
 					<header>
-						<h1 class="article-title">
+						<h1 class="post-title">
 							<?php if ($this->is_single) {
 								printf('<a href="%s">%s</a>',
-									$article['permalink'],
-									$article['title']
+									$post['permalink'],
+									$post['title']
 								);
 							}
 							else {
-								echo $article['title'];
+								echo $post['title'];
 							} ?>
 						</h1>
-						<p class="article-date"><?php echo date('l, F j, Y', $article['timestamp']); ?></p>
+						<p class="post-date"><?php echo date('l, F j, Y', $post['timestamp']); ?></p>
 					</header>
-					<div class="article-content">
-						<?php echo $article['body']; ?>
+					<div class="post-content">
+						<?php echo $post['body']; ?>
 					</div>
 				</article>
 			<?php endforeach; ?>

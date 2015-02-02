@@ -2,7 +2,7 @@
 
 if (!defined('ACCESS')) die('Direct access is not allowed');
 
-class Article {
+class Post {
 
 	private $source_filename;
 	
@@ -19,7 +19,7 @@ class Article {
 	
 	
 	/**
-	 * Set up the article
+	 * Set up the post
 	 *
 	 * @param string $source_filename
 	 */
@@ -53,7 +53,7 @@ class Article {
 		
 		$this->body = isset($segments[0]) ? $segments[0] : '';
 		
-		// Set article publish date
+		// Set post publish date
 		if (array_key_exists('date', $this->headers)) {
 			$date = $this->headers['date'];
 			
@@ -68,7 +68,7 @@ class Article {
 	
 	
 	/**
-	 * Run the article body through any parsers
+	 * Run the post body through any parsers
 	 */
 	public function rendered_body() {
 		return SmartyPants(Markdown($this->body));

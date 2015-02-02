@@ -25,11 +25,11 @@ class App {
 		// Get the requested URL
 		$this->url = $this->get_requested_url();
 		
-		$articles = array(
-			new Article(Settings::get('root.content') . '/2015/01/welcome.txt')
+		$posts = array(
+			new Post(Settings::get('root.content') . '/2015/01/welcome.txt')
 		);
 		
-		$this->write_page($articles);
+		$this->write_page($posts);
 	}
 	
 	
@@ -51,19 +51,19 @@ class App {
 	/**
 	 * Generate and display the page
 	 */
-	private function write_page($articles) {
+	private function write_page($posts) {
 		$template = new Template($this->template_name);
 		
-		// Is this a single article page?
-		$template->is_single = (count($articles) == 1) ? true : false;
+		// Is this a single post page?
+		$template->is_single = (count($posts) == 1) ? true : false;
 		
-		// Create the articles content array
-		foreach ($articles as $article) {
-			$template->articles[] = array(
-				'title'     => html_entity_decode(SmartyPants($article->title), ENT_QUOTES, 'UTF-8'),
-				'body'      => $article->rendered_body(),
-				'permalink' => Settings::get('base_uri') . '/' . $article->slug,
-				'timestamp' => $article->timestamp
+		// Create the posts content array
+		foreach ($posts as $post) {
+			$template->posts[] = array(
+				'title'     => html_entity_decode(SmartyPants($post->title), ENT_QUOTES, 'UTF-8'),
+				'body'      => $post->rendered_body(),
+				'permalink' => Settings::get('base_uri') . '/' . $post->slug,
+				'timestamp' => $post->timestamp
 			);
 		}
 		
@@ -71,7 +71,11 @@ class App {
 		$output_html = $template->outputHTML();
 		
 		// Display the page
-		echo $output_html;
+		//echo $output_html;
+		
+		echo '<pre>';
+		print_r($template);
+		echo '</pre>';
 	}
 
 }
