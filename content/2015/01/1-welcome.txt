@@ -1,0 +1,14 @@
+Welcome to MilkCMS
+==================
+Date: 2015/01/01 12:00:00pm
+Tags: milkcms, markdown
+
+The post body is written in **Markdown**.
+
+The title of the post should be on the first line of the file with any number of "=" symbols directly below it.
+
+You can add arbitrary metadata fields to your posts, like the "Tags" above. The syntax is Field: value. Each one should be placed on it's own line, immediately after the "=" row.
+
+Configuration files are found in the /site/config folder. Feel free to edit these settings to your liking.
+
+You can then customize the template in the /site/template folder.
