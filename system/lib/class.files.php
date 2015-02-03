@@ -28,7 +28,7 @@ class Files {
 			
 			foreach ($files as $file) {
 				// have we reached the limit?
-				if ($limit && count($out) >= $limit) {
+				if ($limit > 0 && count($out) >= $limit) {
 					break;
 				}
 				
@@ -46,25 +46,6 @@ class Files {
 		
 		return $out;
 	}
-	
-	
-	
-	/**
-	 * Get paged file list
-	 *
-	 * @param int $page_number
-	 * return array
-	 */
-	public static function paged_file_list($page_number) {
-		$posts_per_page = Settings::get('posts_per_page');
-		
-		$start = $page_number > 1 ? (($page_number - 1) * $posts_per_page) : 0;
-		
-		$file_paths = self::file_list(null, $start + $posts_per_page);
-		
-		return array_slice($file_paths, $start);
-	}
-	
 	
 	
 	

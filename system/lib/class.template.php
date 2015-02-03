@@ -29,6 +29,11 @@ class Template {
 		}
 		
 		$this->template_path = $path;
+		
+		$this->content = array(
+			'site_title'       => Settings::get('site_title'),
+			'site_description' => Settings::get('site_description')
+		);
 	}
 	
 	
