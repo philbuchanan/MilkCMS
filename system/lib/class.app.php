@@ -14,29 +14,35 @@ class App {
 		
 		// The requested path
 		$request = rtrim(str_replace($rewritebase, '', $request_uri), '/');
+		$request_parts = explode('/', $request);
 		
-		$files = new Files();
+		
+		
 		
 		// Direct the request
 		if (empty($request)) {
 			$this->write_page($content, 'index');
 		}
+		else if (count($request_parts) <= 2) {
+			
+		}
 		else {
-			$content_dir = Settings::get('content_dir');
-			$extension   = Settings::get('post_extension');
+			$year  = $request_parts[0];
+			$month = $request_parts[1];
+			$slug  = $request_parts[2];
 			
-			$filepath = $content_dir . '/' . $request . $extension;
+			$file_path = Files::post_path($year, $month, $slug);
 			
-			if (file_exists($filepath)) {
+			if ($file_path) {
 				$content = array(
-					new Post($filepath)
+					new Post($file_path)
 				);
-				
-				$this->write_page($content, 'single');
 			}
 			else {
 				header('HTTP/1.0 404 Not Found');
 			}
+			
+			$this->write_page($content, 'single');
 		}
 	}
 	

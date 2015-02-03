@@ -30,7 +30,7 @@ class Post {
 		// Set the slug based on the filename
 		$filename = basename($source_filename);
 		$filename_parts = explode('.', $filename);
-		$this->slug = $filename_parts[0];
+		$this->slug = preg_replace('/\d+\-/', '', $filename_parts[0]);
 		
 		// Get file content parts
 		$segments = explode("\n\n", trim(file_get_contents($source_filename)), 2);
