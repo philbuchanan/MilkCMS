@@ -15,7 +15,7 @@ Settings::set(array(
 	/**
 	 * Site title
 	 */
-	'site_title' => 'MilkCMS',
+	'site_title' => 'Milk CMS',
 	
 	
 	

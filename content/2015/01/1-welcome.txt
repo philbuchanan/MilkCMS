@@ -1,7 +1,7 @@
-Welcome to MilkCMS
-==================
+Welcome to Milk CMS
+=================+=
 Date: 2015/01/01 12:00:00pm
-Tags: milkcms, markdown
+Tags: milk cms, markdown
 
 The post body is written in **Markdown**.
 

@@ -10,7 +10,6 @@ Features:
 - No menus, widgets or plugins
 - Simple previous and next pagination
 - Markdown integration for simple writing
-- Caching of article pages
 
 ## Requirements
 
