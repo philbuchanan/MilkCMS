@@ -27,6 +27,16 @@ class App {
 			
 			$this->write_page($posts, 'index');
 		}
+		else if (strstr($request, 'page=')) {
+			// Paged
+			$page_number = intval(str_replace('page=', '', $request));
+			
+			foreach (Files::paged_file_list($page_number) as $file_path) {
+				$posts[] = new Post($file_path);
+			}
+			
+			$this->write_page($posts, 'index');
+		}
 		else {
 			// Single post
 			$year  = $request_parts[0];

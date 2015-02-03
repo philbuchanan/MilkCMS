@@ -10,7 +10,7 @@ class Files {
 	 *
 	 * @param string $dir The directory to load
 	 * @param int $limit
-	 * return void
+	 * return array
 	 */
 	public static function file_list($dir = null, $limit = 0) {
 		$out = array();
@@ -28,7 +28,7 @@ class Files {
 			
 			foreach ($files as $file) {
 				// have we reached the limit?
-				if ($limit && count($out) >= $limit - 1) {
+				if ($limit && count($out) >= $limit) {
 					break;
 				}
 				
@@ -36,7 +36,7 @@ class Files {
 				
 				// If file is a driectory, get its file contents
 				if (is_dir($full_path)) {
-					$out = array_merge($out, self::file_list($full_path, $limit));
+					$out = array_merge($out, self::file_list($full_path, $limit - count($out)));
 				}
 				else {
 					$out[] = "$dir/$file";
@@ -46,6 +46,25 @@ class Files {
 		
 		return $out;
 	}
+	
+	
+	
+	/**
+	 * Get paged file list
+	 *
+	 * @param int $page_number
+	 * return array
+	 */
+	public static function paged_file_list($page_number) {
+		$posts_per_page = Settings::get('posts_per_page');
+		
+		$start = $page_number > 1 ? (($page_number - 1) * $posts_per_page) : 0;
+		
+		$file_paths = self::file_list(null, $start + $posts_per_page);
+		
+		return array_slice($file_paths, $start);
+	}
+	
 	
 	
 	
