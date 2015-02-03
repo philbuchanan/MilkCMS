@@ -21,7 +21,9 @@
 								echo $post['title'];
 							} ?>
 						</h1>
-						<p class="post-date"><?php echo date('l, F j, Y', $post['timestamp']); ?></p>
+						<div class="post-meta">
+							<p class="post-date"><?php echo date('l, F j, Y', $post['timestamp']); ?></p>
+						</div>
 					</header>
 					<div class="post-content">
 						<?php echo $post['body']; ?>
@@ -30,10 +32,10 @@
 			<?php endforeach; ?>
 			<?php if (isset($content['pagination'])) : ?>
 				<nav class="pagination">
-					<?php if (isset($content['pagination']['prev_page'])) { ?>
+					<?php if ($content['pagination']['prev_page']) { ?>
 						<a href="<?php echo $content['pagination']['prev_page']; ?>" class="pagination-link prev-page">Newer Posts</a>
 					<?php } ?>
-					<?php if (isset($content['pagination']['next_page'])) { ?>
+					<?php if ($content['pagination']['next_page']) { ?>
 						<a href="<?php echo $content['pagination']['next_page']; ?>" class="pagination-link next-page">Older Posts</a>
 					<?php } ?>
 				</nav>

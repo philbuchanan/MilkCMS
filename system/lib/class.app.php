@@ -29,39 +29,32 @@ class App {
 		}
 		else if (strstr($request, 'page=')) {
 			// Paged
-			$page_number = intval(str_replace('page=', '', $request));
+			$page = intval(str_replace('page=', '', $request));
 			$posts_per_page = Settings::get('posts_per_page');
 			
-			$start = $page_number > 1 ? (($page_number - 1) * $posts_per_page) : 0;
-			$end   = $start + $posts_per_page;
+			$start = $page > 1 ? (($page - 1) * $posts_per_page) : 0;
 			
 			$all_files = Files::file_list();
 			
-			// Fill the posts array with post objects
+			// Fill the posts array with this pages post objects
 			$file_paths = array_slice($all_files, $start, $posts_per_page);
-			foreach ($file_paths as $file_path) {
-				$posts[] = new Post($file_path);
+			
+			// Make sure this is a valid page
+			if (!empty($file_paths)) {
+				foreach ($file_paths as $file_path) {
+					$posts[] = new Post($file_path);
+				}
+				
+				// Set up additional content array for pagination
+				$content = array(
+					'pagination' => $this->pagination_links($page, count($all_files))
+				);
+				
+				$this->write_page('index', $posts, $content);
 			}
-			
-			// Set up additional content array for pagination
-			$page_link = Settings::get('base_uri') . 'page=';
-			
-			$next_page_number = $end < count($all_files) ? $page_number + 1 : '';
-			$prev_page_number = $page_number > 1 ? $page_number - 1 : '';
-			
-			if ($prev_page_number) {
-				$pagination['prev_page'] = $page_link . $prev_page_number;
+			else {
+				header('HTTP/1.0 404 Not Found');
 			}
-			
-			if ($next_page_number) {
-				$pagination['next_page'] = $page_link . $next_page_number;
-			}
-			
-			$content = array(
-				'pagination' => $pagination
-			);
-			
-			$this->write_page('index', $posts, $content);
 		}
 		else {
 			// Single post
@@ -87,6 +80,40 @@ class App {
 	
 	
 	/**
+	 * Generate pagination links
+	 *
+	 * @param int $page Current page number
+	 * @param int $count Total post count
+	 * return array
+	 */
+	private function pagination_links($page, $count) {
+		$pagination = array(
+			'prev_page' => false,
+			'next_page' => false
+		);
+		
+		$posts_per_page = Settings::get('posts_per_page');
+		$page_link      = Settings::get('base_uri') . 'page=';
+		
+		$start = $page > 1 ? (($page - 1) * $posts_per_page) : 0;
+		$end   = $start + $posts_per_page;
+		
+		// Previous page
+		if ($page > 1) {
+			$pagination['prev_page'] = $page_link . ($page - 1);
+		}
+		
+		// Next page
+		if ($end < $count) {
+			$pagination['next_page'] = $page_link . ($page + 1);
+		}
+		
+		return $pagination;
+	}
+	
+	
+	
+	/**
 	 * Generate and display the post index and single post pages
 	 *
 	 * @param string $template_name The name of the template file to load
@@ -106,14 +133,16 @@ class App {
 		$output_html = $t->outputHTML();
 		
 		// Display the page
-		//echo $output_html;
+		echo $output_html;
 		
+/*
 		echo '<pre>';
-		//print_r(Settings::get());
-		//print_r($post_data);
-		//print_r($content);
+		print_r(Settings::get());
+		print_r($post_data);
+		print_r($content);
 		print_r($t);
 		echo '</pre>';
+*/
 	}
 
 }
