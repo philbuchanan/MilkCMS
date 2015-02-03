@@ -27,6 +27,13 @@ Settings::set(array(
 	
 	
 	/**
+	 * Number of posts to display on the index page
+	 */
+	'posts_per_page' => 10,
+	
+	
+	
+	/**
 	 * Post file extension
 	 * Uncomment the following line to change the post file extension from the
 	 * default (.txt).

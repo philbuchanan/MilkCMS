@@ -18,14 +18,17 @@ class App {
 		
 		// Direct the request
 		if (empty($request)) {
-			$content = array();
+			// Index listing
+			$posts_per_page = Settings::get('posts_per_page');
 			
-			$this->write_page($content, 'index');
-		}
-		else if (count($request_parts) <= 2) {
+			foreach (Files::file_list(null, $posts_per_page) as $file_path) {
+				$posts[] = new Post($file_path);
+			}
 			
+			$this->write_page($posts, 'index');
 		}
 		else {
+			// Single post
 			$year  = $request_parts[0];
 			$month = $request_parts[1];
 			$slug  = $request_parts[2];
@@ -33,11 +36,11 @@ class App {
 			$file_path = Files::post_path($year, $month, $slug);
 			
 			if ($file_path) {
-				$content = array(
+				$posts = array(
 					new Post($file_path)
 				);
 				
-				$this->write_page($content, 'single');
+				$this->write_page($posts, 'single');
 			}
 			else {
 				header('HTTP/1.0 404 Not Found');

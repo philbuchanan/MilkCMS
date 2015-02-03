@@ -44,7 +44,7 @@ Here is an example file:
 
 Save your .txt files in the content folder, organized into year and month folders. The year should be 4 digits and the month should be 2 digits (with leading zeros). For example, posts plblished in January 2015 should look like this: `/content/2015/01/`.
 
-The text files should be numbered in the reverse cronological order. The first post published in the month should be `1-` followed by the URL slug you want for the post. Make sure to only use lowercase letters and hyphens in your file names. Do not use periods. Also don't use numbers at the beginning of the file name.
+The text files should be numbered in the reverse chronological order. The first post published in the month should be `1-` followed by the URL slug you want for the post. Make sure to only use lowercase letters and hyphens in your file names. Do not use periods. Also don't use numbers at the beginning of the file name.
 
 Here are a few examples of some filenames:
 

@@ -5,28 +5,38 @@ if (!defined('ACCESS')) die('Direct access is not allowed');
 class Files {
 
 	/**
-	 * Add all files in a directory and subdirectories to the $files_list array
+	 * Returns an array or files in the specified directory and subdirectories
+	 * Array is in reverse chronological order.
 	 *
 	 * @param string $dir The directory to load
+	 * @param int $limit
 	 * return void
 	 */
-	public static function file_list($dir = null) {
+	public static function file_list($dir = null, $limit = 0) {
 		$out = array();
 		
+		// Set the default direcotry if none is specified
 		if (!$dir) {
 			$dir = Settings::get('content_dir');
 		}
 		
+		// Files and directories to skip
 		$skip = array('.', '..', '.DS_Store', 'images');
 		
 		if (is_dir($dir)) {
 			$files = array_diff(scandir($dir, SCANDIR_SORT_DESCENDING), $skip);
 			
 			foreach ($files as $file) {
+				// have we reached the limit?
+				if ($limit && count($out) >= $limit - 1) {
+					break;
+				}
+				
 				$full_path = "$dir/$file";
 				
+				// If file is a driectory, get its file contents
 				if (is_dir($full_path)) {
-					$out = array_merge($out, self::file_list($full_path));
+					$out = array_merge($out, self::file_list($full_path, $limit));
 				}
 				else {
 					$out[] = "$dir/$file";
