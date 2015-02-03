@@ -34,6 +34,30 @@ class Template {
 	
 	
 	/**
+	 * Get a formatted array of post data
+	 *
+	 * @param array $posts An array of post objects
+	 * return array A formatted array of post content arrays
+	 */
+	public function posts_array_for_template($posts) {
+		$posts_array = array();
+		
+		foreach ($posts as $post) {
+			$posts_array[] = array(
+				'title'     => $post->encode_string($post->title),
+				'body'      => $post->rendered_body(),
+				'permalink' => Settings::get('base_uri') . $post->slug,
+				'timestamp' => $post->timestamp,
+				'meta'      => $post->meta
+			);
+		}
+		
+		return $posts_array;
+	}
+	
+	
+	
+	/**
 	 * Output the template HTML
 	 *
 	 * return string The rendered template content

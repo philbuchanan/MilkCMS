@@ -4,7 +4,7 @@ if (!defined('ACCESS')) die('Direct access is not allowed');
 
 class Settings {
 
-	static $settings = array();
+	public static $settings = array();
 	
 	
 	
@@ -17,7 +17,7 @@ class Settings {
 	 *
 	 * return void
 	 */
-	static function set($key, $value = null) {
+	public static function set($key, $value = null) {
 		if (is_array($key)) {
 			// set all new values
 			self::$settings = array_merge(self::$settings, $key);
@@ -36,7 +36,7 @@ class Settings {
 	 *
 	 * return array|string $value The value for the setting or all settings
 	 */
-	static function get($key = null) {
+	public static function get($key = null) {
 		// If no key set, return all settings
 		if (empty($key)) {
 			return self::$settings;
@@ -54,7 +54,7 @@ class Settings {
 	 *
 	 * E.g. config.localhost.php will load a custom config file for localhost
 	 */
-	static function load_configs() {
+	public static function load_configs() {
 		$default_config = self::get('config_dir') . '/config.php';
 		$server_config  = self::get('config_dir') . '/config.' . $_SERVER['SERVER_NAME'] . '.php';
 		

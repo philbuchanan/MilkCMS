@@ -8,7 +8,7 @@ class Post {
 	
 	public $title = '';
 	public $slug = '';
-	public $headers = array();
+	public $meta = array();
 	public $body = '';
 	
 	public $timestamp;
@@ -34,20 +34,20 @@ class Post {
 		
 		// Get file content parts
 		$segments = explode("\n\n", trim(file_get_contents($source_filename)), 2);
-		$headers  = explode("\n", $segments[0]);
+		$meta     = explode("\n", $segments[0]);
 		
 		// Set the post title
-		$this->title = $headers[0];
+		$this->title = $meta[0];
 		
-		// Parse the post headers
-		foreach ($headers as $header) {
-			$fields = explode(':', $header, 2);
+		// Parse the post meta
+		foreach ($meta as $item) {
+			$fields = explode(':', $item, 2);
 			
 			if (count($fields) > 1) {
 				$field_name  = strtolower($fields[0]);
 				$field_value = trim($fields[1]);
 				
-				$this->headers[$field_name] = $field_value;
+				$this->meta[$field_name] = $field_value;
 			}
 		}
 		array_shift($segments);
@@ -56,12 +56,12 @@ class Post {
 		$this->body = isset($segments[0]) ? $segments[0] : '';
 		
 		// Set post publish date
-		if (array_key_exists('date', $this->headers)) {
-			$date = $this->headers['date'];
+		if (array_key_exists('date', $this->meta)) {
+			$date = $this->meta['date'];
 			
-			// Remove the date from the headers array
+			// Remove the date from the meta array
 			// Date should always use the timestamp for display
-			unset($this->headers['date']);
+			unset($this->meta['date']);
 			
 			$this->timestamp = date('U', strtotime($date));
 			
