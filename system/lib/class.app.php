@@ -16,11 +16,10 @@ class App {
 		$request = rtrim(str_replace($rewritebase, '', $request_uri), '/');
 		$request_parts = explode('/', $request);
 		
-		
-		
-		
 		// Direct the request
 		if (empty($request)) {
+			$content = array();
+			
 			$this->write_page($content, 'index');
 		}
 		else if (count($request_parts) <= 2) {
@@ -37,19 +36,19 @@ class App {
 				$content = array(
 					new Post($file_path)
 				);
+				
+				$this->write_page($content, 'single');
 			}
 			else {
 				header('HTTP/1.0 404 Not Found');
 			}
-			
-			$this->write_page($content, 'single');
 		}
 	}
 	
 	
 	
 	/**
-	 * Generate and display the page
+	 * Generate and display the post index and single post pages
 	 *
 	 * @param array $post_data The posts content array
 	 * @param string $template_name The name of the template file to load

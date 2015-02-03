@@ -43,10 +43,12 @@ class Template {
 		$posts_array = array();
 		
 		foreach ($posts as $post) {
+			$absolute_url = "$post->year/$post->month/$post->slug";
+			
 			$posts_array[] = array(
 				'title'     => $post->encode_string($post->title),
 				'body'      => $post->rendered_body(),
-				'permalink' => Settings::get('base_uri') . $post->slug,
+				'permalink' => Settings::get('base_uri') . $absolute_url,
 				'timestamp' => $post->timestamp,
 				'meta'      => $post->meta
 			);

@@ -65,9 +65,9 @@ class Post {
 			
 			$this->timestamp = date('U', strtotime($date));
 			
-			$this->year  = intval(date('Y', $this->timestamp));
-			$this->month = intval(date('m', $this->timestamp));
-			$this->day   = intval(date('d', $this->timestamp));
+			$this->year  = date('Y', $this->timestamp);
+			$this->month = date('m', $this->timestamp);
+			$this->day   = date('d', $this->timestamp);
 		}
 	}
 	
