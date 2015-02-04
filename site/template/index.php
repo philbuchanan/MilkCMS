@@ -4,13 +4,14 @@
 		<meta charset="utf-8">
 		<title><?php echo $content['site_title']; ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="<?php echo $content['base_uri']; ?>site/template/css/style.css">
 	</head>
 	<body>
-		<header>
+		<header class="site-header">
 			<p class="site-title"><?php echo $content['site_title']; ?></p>
 			<p class="site-description"><?php echo $content['site_description']; ?></p>
 		</header>
-		<main>
+		<main class="main-content" id="content">
 			<?php foreach($content['posts'] as $post) : ?>
 				<article class="post">
 					<header>
@@ -41,5 +42,8 @@
 				</nav>
 			<?php endif; ?>
 		</main>
+		<footer class="site-footer">
+			&copy; <?php echo date('Y'); ?> <?php echo $content['site_title']; ?>
+		</footer>
 	</body>
 </html>

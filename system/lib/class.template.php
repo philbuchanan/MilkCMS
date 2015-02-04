@@ -32,7 +32,8 @@ class Template {
 		
 		$this->content = array(
 			'site_title'       => Settings::get('site_title'),
-			'site_description' => Settings::get('site_description')
+			'site_description' => Settings::get('site_description'),
+			'base_uri'         => Settings::get('base_uri')
 		);
 	}
 	

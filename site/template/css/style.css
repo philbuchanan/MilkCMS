@@ -1,0 +1,298 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+/**
+ * Milk CMS Default Template
+ * Author: Phil Buchanan
+ * Author URI: http://philbuchanan.com/
+ */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+header,
+footer,
+main,
+article,
+aside,
+details,
+figcaption,
+figure,
+menu,
+nav,
+section {
+  display: block;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  color: #4c4c4c;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 80%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 15px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+}
+h1 {
+  font-size: 2.5em;
+  line-height: 1.2em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+h2 {
+  font-size: 1.5em;
+  line-height: 1em;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+h3 {
+  font-size: 1.25em;
+  line-height: 1.2em;
+  font-weight: 400;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+p {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+blockquote {
+  border-left: 3px solid #4c4c4c;
+  padding-left: 23px;
+}
+small {
+  font-size: 80%;
+}
+big {
+  font-size: 120%;
+}
+strong {
+  font-weight: 700;
+}
+em {
+  font-style: italic;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+ins {
+  text-decoration: underline;
+}
+del {
+  text-decoration: line-through;
+}
+ul,
+ol {
+  margin: 0 0 1.3em 1.3em;
+}
+ul {
+  list-style: disc;
+}
+ol {
+  list-style: decimal;
+}
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+dl {
+  margin-bottom: 1.3em;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-bottom: 1.3em;
+}
+hr {
+  border: solid #cccccc;
+  border-width: 1px 0 0;
+  height: 0;
+  margin: 1em 0;
+}
+img {
+  border: 0;
+  max-width: 100%;
+  height: inherit;
+  vertical-align: middle;
+}
+a {
+  color: #4c4c4c;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:hover {
+  color: #ff7e0f;
+}
+.prev-page {
+  float: left;
+}
+.next-page {
+  float: right;
+}
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link {
+  color: #ff7e0f;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 8px 16px 7px;
+  outline: none;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.skip-link:focus {
+  left: 15px;
+  top: 15px;
+  clip: auto;
+  width: auto;
+  height: auto;
+  z-index: 100000;
+}
+.site-header {
+  border-bottom: 1px solid #4c4c4c;
+}
+.site-footer {
+  border-top: 1px solid #4c4c4c;
+}
+.post-meta {
+  font-size: 80%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

@@ -1,0 +1,374 @@
+/**
+ * Milk CMS Default Template
+ * Author: Phil Buchanan
+ * Author URI: http://philbuchanan.com/
+ */
+
+
+
+// Table of Contents
+// ----------------------------------
+
+// 0.0  - LESS variables
+// 1.0  - Reset
+// 2.0  - Typography
+//   2.1  - Lists
+// 3.0  - Elements
+// 4.0  - Images and Media
+// 5.0  - Navigation
+//   5.1  - Links
+//   5.2  - Pagination
+// 6.0  - Accessibility
+// 7.0  - Headers and footer
+// 8.0  - Content
+//   8.1  - Posts and pages
+
+
+
+// 0.0 LESS variables
+// ----------------------------------
+
+// Colors
+@textColor:                #4c4c4c;
+@linkColor:                #ff7e0f;
+
+// Grey
+@lighterGrey:              #eee;
+@lightGrey:                #ccc;
+@mediumGrey:               #aaa;
+@darkGrey:                 #555;
+@darkerGrey:               #222;
+
+// Typography
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+
+@sansSerifFontFamily:      'Open Sans', sans-serif;
+@serifFontFamily:          Georgia, Times, serif;
+@baseFontFamily:           @sansSerifFontFamily;
+@baseFontSize:             16px;
+@baseLineHeight:           1.5;
+
+
+
+// 1.0 Reset
+// ----------------------------------
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+header, footer, main, article, aside, details,
+figcaption, figure, menu, nav, section {
+	display: block;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+
+
+// 2.0 Typography
+// ----------------------------------
+
+body {
+	color: @textColor;
+	font-family: @baseFontFamily;
+	font-size: @baseFontSize;
+	line-height: @baseLineHeight;
+	width: 80%;
+	max-width: 880px;
+	margin: 0 auto;
+	padding: 0 15px;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	    -ms-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+}
+
+h1 {
+	font-size: 2.5em;
+	line-height: 1.2em;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.6em;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1em;
+	font-weight: 600;
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+h3 {
+	font-size: 1.25em;
+	line-height: 1.2em;
+	font-weight: 400;
+	margin-top: 1.2em;
+	margin-bottom: 1.2em;
+}
+
+h4 {}
+
+h5 {}
+
+h6 {}
+
+p {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+blockquote {
+	border-left: 3px solid @textColor;
+	padding-left: 23px;
+}
+
+small {
+	font-size: 80%;
+}
+
+big {
+	font-size: 120%;
+}
+
+strong {
+	font-weight: 700;
+}
+
+em {
+	font-style: italic;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+ins {
+	text-decoration: underline;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+
+
+// 2.1 Lists
+// ----------------------------------
+
+ul,
+ol {
+	margin: 0 0 1.3em 1.3em;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+}
+
+dl {
+	margin-bottom: 1.3em;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-bottom: 1.3em;
+}
+
+
+
+// 3.0 Elements
+// ----------------------------------
+
+hr {
+	border: solid @lightGrey;
+	border-width: 1px 0 0;
+	height: 0;
+	margin: 1em 0;
+}
+
+
+
+// 4.0 Images
+// ----------------------------------
+
+img {
+	border: 0;
+	max-width: 100%;
+	height: inherit;
+	vertical-align: middle;
+}
+
+
+
+// 5.0 Navigation
+// ----------------------------------
+
+
+
+// 5.1 Links
+// ----------------------------------
+
+a {
+	color: @textColor;
+	background-color: transparent;
+	text-decoration: underline;
+	
+	&:focus {
+		outline: thin dotted;
+	}
+	
+	&:hover {
+		color: @linkColor;
+	}
+}
+
+
+
+// 5.2 Pagination
+// ----------------------------------
+
+.pagination {}
+
+.pagination-link {}
+
+.prev-page {
+	float: left;
+}
+
+.next-page {
+	float: right;
+}
+
+
+
+// 6.0 Accessibility
+// ----------------------------------
+
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.skip-link {
+	color: @linkColor;
+	background-color: #f1f1f1;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 8px 16px 7px;
+	outline: none;
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+	
+	&:focus {
+		left: 15px;
+		top: 15px;
+		clip: auto;
+		width: auto;
+		height: auto;
+		z-index: 100000;
+	}
+}
+
+
+
+// 7.0 Headers and footers
+// ----------------------------------
+
+.site-header {
+	border-bottom: 1px solid @textColor;
+}
+
+.site-footer {
+	border-top: 1px solid @textColor;
+}
+
+
+
+// 8.0 Content
+// ----------------------------------
+
+.main-content {}
+
+
+
+// 8.1 Posts
+// ----------------------------------
+
+.post-header {}
+
+.post-title {}
+
+.post-meta {
+	font-size: 80%;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.post-content {}
